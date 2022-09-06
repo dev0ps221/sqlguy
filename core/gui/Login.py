@@ -32,6 +32,7 @@ class LoginView:
         self.dologin_container.content = dologin_input
         self.form.controls = [self.login_label_container,self.server_container,self.username_container,self.password_container,self.dologin_container]
         self.container.content = self.form
+        
     def update_form(self):
         self.form.update()
 
