@@ -6,6 +6,8 @@ from flet import Text, TextEntry, ElevatedButton, Column, Row, Container, colors
 
 class ServerView:
 
+    def __init__(self,master):
+        self.master = master
 
     def do_logout(self):
         pass

@@ -7,6 +7,9 @@ from flet import Text, TextEntry, ElevatedButton, Column, Row, Container, colors
 class LoginView:
 
 
+    def __init__(self,master):
+        self.master = master
+
     def do_login(self):
         print(self.server_input.value)
         print(self.username_input.value)
@@ -32,7 +35,7 @@ class LoginView:
         self.dologin_container.content = dologin_input
         self.form.controls = [self.login_label_container,self.server_container,self.username_container,self.password_container,self.dologin_container]
         self.container.content = self.form
-        
+
     def update_form(self):
         self.form.update()
 
