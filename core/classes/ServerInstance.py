@@ -9,3 +9,4 @@ class ServerInstance:
         self.host = host
         self.user = user
         self.pwd  = pwd
+    

@@ -1,5 +1,5 @@
 from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
-
+from core.classes import ServerInstance
 
 
 
@@ -11,10 +11,9 @@ class LoginView:
         self.master = master
 
     def do_login(self,e):
-        print(self.server_input.value)
-        print(self.username_input.value)
-        print(self.password_input.value)
-
+        instance = ServerInstance(self.server_input.value,self.username_input.value,self.password_input.value)
+        print(instance)
+        
     def build_components(self):
         self.container = Container()
         self.server_container = Container()
