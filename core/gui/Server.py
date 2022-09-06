@@ -1,4 +1,4 @@
-from flet import Text, TextEntry, ElevatedButton, Column, Row, Container, colors
+from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 
 
 

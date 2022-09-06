@@ -1,5 +1,6 @@
-from gui.Login  import   LoginView
-from gui.Server import ServerView
+from core.gui.Login  import   LoginView
+from core.gui.Server import ServerView
+from flet import Page
 
 
 
@@ -27,13 +28,17 @@ class SQLGUY:
         self.actual_server = view
 
     def login_view(self):
+        self.Login.build_components()
+        self.Login.append_to(self.page)
 
     def server_view(self):
+        self.Server.build_components()
+        self.Server.append_to(self.page)
 
     def refresh_view(self):
         if self.actual_view == 'login':
             self.login_view()
-            
+
         if self.actual_view == 'server':
             self.login_view()
 
@@ -44,3 +49,4 @@ class SQLGUY:
 
     def loop(self,page:Page):
         self.page = page
+        self.refresh_view()
