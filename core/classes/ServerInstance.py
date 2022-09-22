@@ -45,8 +45,14 @@ class ServerInstance:
     def delcursor(self):
         self.cursor = None
 
+    def process_databases(self,dbs):
+        dbs = []
+        for db in dbs:
+            
+        return dbs
+
     def setdata(self):
-        self.data = {'databases':self.executereq('show databases')}
+        self.data = {'databases':self.process_databases(self.executereq('show databases'))}
 
     def __init__(self, host, user, pwd):
         self.host = host
@@ -56,4 +62,3 @@ class ServerInstance:
         self.setdata()
     
 server = ServerInstance('','root','')
-print(server.data)
