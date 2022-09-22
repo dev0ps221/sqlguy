@@ -7,6 +7,7 @@ class ServerInstance:
     connected = False
     dbinstance = None
     cursor = None
+    data = {}
 
     def connect(self):
         self.dbinstance = mysql.connector.connect(
@@ -14,22 +15,45 @@ class ServerInstance:
             user=self.user,
             password=self.pwd
         )
+        return self.getcursor()
 
     def setcursor(self):
-        return self.cursor is not None
+        self.cursor = self.dbinstance.cursor() if self.dbinstance is not None else self.cursor
+        return self.gotcursor()
+
+    def retrieve_results(self):
+        res = []
+        for r in self.cursor:
+            res.append(r)
+        return res
 
     def getcursor(self):
         if self.cursor is None:
-            self.cursor = self.dbinstance.cursor() if self.dbinstance is not None else self.cursor
+            self.setcursor()
+        return self.cursor
 
+    def gotcursor(self):
+        return self.cursor is not None
+
+
+    def executereq(self,req):
+        self.getcursor().execute(req) if self.getcursor() else None
+        res = self.retrieve_results() 
+        self.setcursor()
+        return res
+    
     def delcursor(self):
         self.cursor = None
-        print(self.dbinstance)
+
+    def setdata(self):
+        self.data = {'databases':self.executereq('show databases')}
 
     def __init__(self, host, user, pwd):
         self.host = host
         self.user = user
         self.pwd  = pwd
+        self.connect()
+        self.setdata()
     
 server = ServerInstance('','root','')
-server.connect()
+print(server.data)
