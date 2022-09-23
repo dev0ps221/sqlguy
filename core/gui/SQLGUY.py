@@ -40,7 +40,7 @@ class SQLGUY:
             self.login_view()
 
         if self.actual_view == 'server':
-            self.login_view()
+            self.server_view()
 
     def __init__(self):
         self.Login   =   LoginView(self)
