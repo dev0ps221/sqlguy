@@ -1,5 +1,5 @@
 import mysql.connector
-
+from DatabaseInstance import DatabaseInstance
 class ServerInstance:
     host = None
     user = None
@@ -45,10 +45,10 @@ class ServerInstance:
     def delcursor(self):
         self.cursor = None
 
-    def process_databases(self,dbs):
+    def process_databases(self,deebees):
         dbs = []
-        for db in dbs:
-            
+        for db in deebees:
+            dbs.append(DatabaseInstance(self,db))
         return dbs
 
     def setdata(self):
@@ -62,3 +62,4 @@ class ServerInstance:
         self.setdata()
     
 server = ServerInstance('','root','')
+print(server.data)
