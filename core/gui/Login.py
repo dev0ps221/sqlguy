@@ -4,15 +4,12 @@ from core.classes.ServerInstance import ServerInstance
 
 
 
-class LoginView:
+class DatabasesView:
+    server = None
 
-
-    def __init__(self,master):
+    def __init__(self,master,server=None):
         self.master = master
-
-    def do_login(self,e):
-        instance = ServerInstance(self.server_input.value,self.username_input.value,self.password_input.value)
-        print(instance)
+        self.server = server
 
     def build_components(self):
         self.container = Container()
