@@ -1,5 +1,5 @@
 import mysql.connector
-from DatabaseInstance import DatabaseInstance
+from core.classes.DatabaseInstance import DatabaseInstance
 class ServerInstance:
     host = None
     user = None

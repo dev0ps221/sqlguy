@@ -1,4 +1,4 @@
-from TableInstance import TableInstance
+from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
     def query(self,query):
