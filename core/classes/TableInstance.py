@@ -18,7 +18,7 @@ class TableInstance:
 
     def __repr__(self):
         return f"{self.name}:{self.getfields()}"
-
+        
     def __init__(self,database,raw):
         self.database = database
         self.name = raw[0] 
