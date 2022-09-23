@@ -6,8 +6,9 @@ from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 
 class ServersView:
 
-    def __init__(self,master):
+    def __init__(self,master,servers):
         self.master = master
+        self.update_servers(self.servers)
 
     def do_logout(self):
         pass
@@ -20,6 +21,10 @@ class ServersView:
         self.container.content = self.servers_container
 
     def update_servers(self):
+        self.servers = servers
+
+
+    def update(self):
         self.server_view.update()
 
     def append_to(self,target):
