@@ -36,9 +36,12 @@ class ServerInstance:
         return self.cursor is not None
 
 
+    def getdatabases(self):
+        return  self.data['databases'] if 'databases' in  self.data else [] 
+
     def executereq(self,req):
         self.getcursor().execute(req) if self.getcursor() else None
-        res = self.retrieve_results() 
+        res = self.retrieve_results()
         self.setcursor()
         return res
     
@@ -54,6 +57,9 @@ class ServerInstance:
     def setdata(self):
         self.data = {'databases':self.process_databases(self.executereq('show databases'))}
 
+    def __repr__(self):
+        return f"{self.host}:{self.getdatabases()}"
+
     def __init__(self, host, user, pwd):
         self.host = host
         self.user = user
@@ -62,4 +68,4 @@ class ServerInstance:
         self.setdata()
     
 server = ServerInstance('','root','')
-print(server.data)
+print(server)
