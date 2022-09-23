@@ -17,7 +17,7 @@ class TableInstance:
         self.data = {'fields':self.process_fields(self.query(f' select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME= "{self.name}"'))}
 
     def __repr__(self):
-        return f"{self.name:self.getfields()}"
+        return f"{self.name}:{self.getfields()}"
 
     def __init__(self,database,raw):
         self.database = database

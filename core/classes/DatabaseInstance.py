@@ -22,7 +22,7 @@ class DatabaseInstance:
         self.data = {'tables':self.process_tables(self.query('show tables'))}
 
     def __repr__(self):
-        return f"{self.name:self.gettables()}"
+        return f"{self.name}:{self.gettables()}"
 
     def __init__(self,serverinstance,raw):
         self.server = serverinstance
