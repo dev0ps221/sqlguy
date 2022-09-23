@@ -40,4 +40,4 @@ class ServersView:
         self.server_view.update()
 
     def append_to(self,target):
-        self.target.add(self.container)
+        target.controls.append(self.container)

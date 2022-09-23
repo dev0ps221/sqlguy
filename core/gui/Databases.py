@@ -10,7 +10,8 @@ class DatabasesView:
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
-
+        self.build_components()
+        
     def build_components(self):
         self.container = Container()
         self.databases_container = Container()
@@ -20,4 +21,4 @@ class DatabasesView:
         self.form.update()
 
     def append_to(self,target):
-        target.add(self.container)
+        target.controls.append(self.container)
