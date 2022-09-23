@@ -12,6 +12,7 @@ class ServersView:
         self.master = master
         self.servers = servers
         self.update_servers(self.servers)
+        self.build_components()
 
     def do_logout(self):
         pass

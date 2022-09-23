@@ -13,12 +13,20 @@ class SQLGUY:
     is_logged = None
     actual_server = None
     actual_view = 'login'
-    topbarcontainer = Container(expand=True) 
-    
+    topbarcontainer = Row()
+    middlecontainer = Row()
+    viewcontainer = Column()
+    serverscontainer = Column()
+    container = Column()
+     
+    def refresh_view(self):
+        
 
     def __init__(self):
         self.Databases   =   DatabasesView(self)
         self.Servers  =   ServersView(self)
+        self.build_components()
+    def build_components(self):
 
 
     def loop(self,page:Page):
