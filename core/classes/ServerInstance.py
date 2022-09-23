@@ -60,12 +60,13 @@ class ServerInstance:
     def __repr__(self):
         return f"{self.host}:{self.getdatabases()}"
 
+    def start(self):
+        self.connect()
+        self.setdata()
+    
+
     def __init__(self, host, user, pwd):
         self.host = host
         self.user = user
         self.pwd  = pwd
-        self.connect()
-        self.setdata()
     
-server = ServerInstance('','root','')
-print(server)
