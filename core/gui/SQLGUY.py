@@ -38,8 +38,7 @@ class SQLGUY:
         self.viewcontainer.content = self.view
         self.container.width = self.wwidth()
         self.container.width = self.wheight()
-        self.topbarcontainer.width = self.container.width
-        print(self.topbarcontainer.width)
+        self.topbarcontainer.width = self.wwidth()
         self.topbarcontainer.height = self.container.height
         self.middlecontainer.width = self.container.width
         self.viewcontainer.width = self.middlecontainer.width*int(80/100)
@@ -60,5 +59,6 @@ class SQLGUY:
 
     def loop(self,page:Page):
         self.page = page
+        self.page.padding = 0
         self.build_components()
         self.refresh_view()
