@@ -27,6 +27,7 @@ class SQLGUY:
         self.Servers.append_to(self.serverscontainer)        
         self.topbarcontainer.update()
         self.serverscontainer.update()
+        
     def __init__(self):
         self.Databases   =   DatabasesView(self)
         self.Servers  =   ServersView(self)
