@@ -13,12 +13,16 @@ class DatabasesView:
         self.build_components()
         
     def build_components(self):
-        self.container = Container()
-        self.databases_container = Container()
+        self.container = Container(bgcolor=colors.BLUE_200)
+        self.databases_container = Column()
+        self.databases_container.controls.append(Text(value='texte'))
         self.container.content =self.databases_container
 
     def update_form(self):
         self.form.update()
 
     def append_to(self,target):
+        self.container.width = target.width
+        self.databases_container.width = target.width
+        print(self.container.width)
         target.controls.append(self.container)

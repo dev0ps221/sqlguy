@@ -27,6 +27,7 @@ class SQLGUY:
         self.Servers.append_to(self.serverscontainer)        
         self.topbarcontainer.update()
         self.serverscontainer.update()
+        self.page.update()
         
     def __init__(self):
         self.Databases   =   DatabasesView(self)
@@ -35,6 +36,14 @@ class SQLGUY:
     def build_components(self):
         self.page.clean()
         self.viewcontainer.content = self.view
+        self.container.width = self.wwidth()
+        self.container.width = self.wheight()
+        self.topbarcontainer.width = self.container.width
+        print(self.topbarcontainer.width)
+        self.topbarcontainer.height = self.container.height
+        self.middlecontainer.width = self.container.width
+        self.viewcontainer.width = self.middlecontainer.width*int(80/100)
+        self.serverscontainer.width = self.middlecontainer.width*int(20/100)
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
         self.container.controls = [self.topbarcontainer,self.middlecontainer]
         self.page.add(self.container)
