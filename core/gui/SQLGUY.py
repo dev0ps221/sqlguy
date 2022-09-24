@@ -42,13 +42,14 @@ class SQLGUY:
         self.topbarcontainer.width = self.wwidth()
         self.topbarcontainer.height = self.wheight() *int(20/100)
         self.middlecontainer.width = self.wwidth() 
-        self.middlecontainer.height = self.wheight()
+        self.middlecontainer.height = self.wheight() *int(80/100)
    
-        self.viewcontainer.width = self.middlecontainer.width*int(80/100)
-        self.serverscontainer.width = self.middlecontainer.width*int(20/100)
+        self.viewcontainer.width = self.middlecontainer.width*int(90/100)
+        self.serverscontainer.width = self.middlecontainer.width*int(10/100)
    
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
         self.container.controls = [self.topbarcontainer,self.middlecontainer]
+        self.container.padding = 0
         self.page.add(self.container)
         self.refresh()
 
