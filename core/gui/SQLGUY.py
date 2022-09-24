@@ -43,6 +43,12 @@ class SQLGUY:
     def refresh(self):
         self.page.update()
     
+    def wwidth(self):
+        return int(self.page.window_width)
+
+    def wheight(self):
+        return int(self.page.window_height)
+
     def loop(self,page:Page):
         self.page = page
         self.build_components()
