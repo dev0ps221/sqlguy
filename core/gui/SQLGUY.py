@@ -15,7 +15,7 @@ class SQLGUY:
     actual_view = 'login'
     topbarcontainer = Row()
     middlecontainer = Row()
-    viewcontainer = Container(expand=True,bgcolor=colors.BLUE_200)
+    viewcontainer = Container(expand=True,bgcolor=colors.GREEN_200)
     view = Column()
     serverscontainer = Column()
     container = Column()
@@ -38,12 +38,15 @@ class SQLGUY:
         self.viewcontainer.content = self.view
         self.container.width = self.wwidth()
         self.container.width = self.wheight()
+
         self.topbarcontainer.width = self.wwidth()
         self.topbarcontainer.height = self.wheight() *int(20/100)
-        self.middlecontainer.width = self.wwidth()
+        self.middlecontainer.width = self.wwidth() 
         self.middlecontainer.height = self.wheight()
+   
         self.viewcontainer.width = self.middlecontainer.width*int(80/100)
         self.serverscontainer.width = self.middlecontainer.width*int(20/100)
+   
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
         self.container.controls = [self.topbarcontainer,self.middlecontainer]
         self.page.add(self.container)
