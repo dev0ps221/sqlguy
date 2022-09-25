@@ -24,6 +24,7 @@ class TextFieldElem:
             self.elem.password = self.data['password']
             if 'can_reveal_password' in self.data:
                 self.elem.can_reveal_password =  self.data['can_reveal_password']
+        print(self.data)
         if 'label' in self.data:
             self.elem.label = self.data['label']
 
@@ -66,6 +67,7 @@ class FormView:
     def __init__(self,fields):
         self.fields = fields
         self.assign_fields()
+        self.mount_fields()
 class ServerForm:
     fields_template = [
         {
@@ -87,4 +89,5 @@ class ServerForm:
         self.formview = FormView(self.fields_template)
 
 addServerView = ServerForm() 
-[print(e.elem) for e in addServerView.formview.field_elems]
+[print(e.elem.elem.label) for e in addServerView.formview.field_elems]
+print(addServerView.formview.field_elems)
