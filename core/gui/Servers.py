@@ -1,3 +1,4 @@
+from core.gui.Forms import ServerForm
 from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 
 
@@ -7,6 +8,7 @@ from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 class ServersView:
 
     servers = []
+    add_server_form = ServerForm()
 
     def __init__(self,master,servers=[]):
         self.master = master
@@ -19,9 +21,11 @@ class ServersView:
 
     def build_components(self):
         self.container = Container()
-        self.servers_container = Container()
+        self.servers_container = Column()
         self.servers_view = Row()
-        self.servers_container.controls = self.getservers()
+        self.add_server_form.formview.append_to(self.servers_container)
+        for server in self.getservers():
+            self.servers_container.controls.append(server)
         self.container.content = self.servers_container
 
     def getservers(self):

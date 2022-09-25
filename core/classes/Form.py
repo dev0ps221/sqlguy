@@ -24,7 +24,6 @@ class TextFieldElem:
             self.elem.password = self.data['password']
             if 'can_reveal_password' in self.data:
                 self.elem.can_reveal_password =  self.data['can_reveal_password']
-        print(self.data)
         if 'label' in self.data:
             self.elem.label = self.data['label']
 
@@ -51,13 +50,15 @@ class FormView:
         return FieldElem(field)
 
     def assign_fields(self):
-        for field in self.fields:
-            self.field_elems.append(self.build_field_elem(field))
+        for field in self.fields: 
+            field_elem = self.build_field_elem(field)
+            self.field_elems.append(field_elem)
 
     def mount_fields(self):
         controls = []
         for elem in self.field_elems:
-            controls.append(elem)
+            field_elem = elem.elem.elem
+            controls.append(field_elem)
         controls.append(self.submitButton)
         self.container.controls = controls
 
@@ -65,29 +66,8 @@ class FormView:
         self.container.update() 
 
     def __init__(self,fields):
+        print(fields)
         self.fields = fields
+        print(self.field_elems)
         self.assign_fields()
         self.mount_fields()
-class ServerForm:
-    fields_template = [
-        {
-            'type':'text',
-            'label':'host'
-        },
-        {
-            'type':'text',
-            'label':'username'
-        },{
-            'type':'text',
-            'label':'password',
-            'password':True,
-            'can_reveal_password':True
-        }
-    ]
-    
-    def __init__(self):
-        self.formview = FormView(self.fields_template)
-
-addServerView = ServerForm() 
-[print(e.elem.elem.label) for e in addServerView.formview.field_elems]
-print(addServerView.formview.field_elems)

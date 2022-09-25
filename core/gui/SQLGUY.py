@@ -39,12 +39,12 @@ class SQLGUY:
         self.container.width = self.wheight()
 
         self.topbarcontainer.width = self.wwidth()
-        self.topbarcontainer.height = self.wheight() *int(20/100)
+        self.topbarcontainer.height = int(self.wheight() *(20/100))
         self.middlecontainer.width = self.wwidth() 
-        self.middlecontainer.height = self.wheight() *int(80/100)
+        self.middlecontainer.height = int(self.wheight() *(80/100))
    
-        self.viewcontainer.width = self.middlecontainer.width*int(90/100)
-        self.serverscontainer.width = self.middlecontainer.width*int(10/100)
+        self.viewcontainer.width = int(self.middlecontainer.width*(80/100))
+        self.serverscontainer.width = int(self.middlecontainer.width*(20/100))
    
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
         self.container.controls = [self.topbarcontainer,self.middlecontainer]
