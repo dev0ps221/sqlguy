@@ -3,6 +3,7 @@ class FieldElem:
     elem = None
     def __init__(self,data):
         self.data = data
+        self.build_elem()
 
     def build_elem(self):
         if 'type' in self.data:
@@ -19,8 +20,13 @@ class TextFieldElem:
             self.data[key] = key
 
     def build_elem(self):
-        for key in self.data:
-            elem[:key] = self.data[:key]
+        if 'password' in self.data:
+            self.elem.password = True
+            if 'can_reveal_password' in self.data:
+                print(self.data['can_reveal_password'])
+                self.elem.can_reveal_password =  True
+        if 'label' in self.data:
+            self.elem.label = self.data['label']
 
     def __init__(self,data):
         self.set_data(data)
@@ -52,12 +58,15 @@ class FormView:
         controls = []
         for elem in self.field_elems:
             controls.append(elem)
-        controls.append(self.submitButton) 
+        controls.append(self.submitButton)
+        self.container.controls = controls
+
+    def refresh(self):
+        self.container.update() 
 
     def __init__(self,fields):
         self.fields = fields
         self.assign_fields()
-
 class ServerForm:
     fields_template = [
         {
@@ -79,4 +88,4 @@ class ServerForm:
         self.formview = FormView(self.fields_template)
 
 addServerView = ServerForm() 
-print(addServerView.formview.elem)
+[print(e.elem) for e in addServerView.formview.field_elems]
