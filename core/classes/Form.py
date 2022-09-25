@@ -9,10 +9,11 @@ class FieldElem:
         if 'type' in self.data:
             if self.data['type'] == 'text':
                 self.elem = TextFieldElem(self.data)
+                print(self.data)
+                print(self.elem)
 
 class TextFieldElem:
-    data = {}
-    elem = TextField() 
+    data = {} 
 
     def set_data(self,data):
         self.rawdata = data
@@ -28,6 +29,7 @@ class TextFieldElem:
             self.elem.label = self.data['label']
 
     def __init__(self,data):
+        self.elem = TextField()
         self.set_data(data)
         self.build_elem()
 
@@ -58,6 +60,7 @@ class FormView:
         controls = []
         for elem in self.field_elems:
             field_elem = elem.elem.elem
+            print(field_elem)
             controls.append(field_elem)
         controls.append(self.submitButton)
         self.container.controls = controls
@@ -68,6 +71,5 @@ class FormView:
     def __init__(self,fields):
         print(fields)
         self.fields = fields
-        print(self.field_elems)
         self.assign_fields()
         self.mount_fields()
