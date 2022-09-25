@@ -51,7 +51,7 @@ class ServersView:
             serverContainer = Container(expand=True)
             serverColumn = Column()
             serverName = Text(value=server.host)
-            serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.RED)
+            serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
             serverColumn.controls = [serverName,serverButton]
             serverContainer.content = serverColumn
             lst.append(serverContainer)
