@@ -3,14 +3,17 @@ class ServerForm:
     fields_template = [
         {
             'type':'text',
-            'label':'host'
+            'label':'host',
+            'name':'host'
         },
         {
             'type':'text',
-            'label':'username'
+            'label':'username',
+            'name':'username'
         },{
             'type':'text',
             'label':'password',
+            'name':'password',
             'password':True,
             'can_reveal_password':True
         }
