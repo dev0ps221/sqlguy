@@ -8,6 +8,7 @@ from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 class ServersView:
 
     servers = []
+    serversdata = []
 
     def add_server(self,event,fields):
         data = {}
@@ -16,7 +17,8 @@ class ServersView:
                 data[field.name] = field.elem.elem.value
         if 'host' in data and 'username' in data and 'password' in data:
             print('we are ready to go, its a valid server')
-
+            self.serversdata.append()
+            
     def __init__(self,master,servers=[]):
         self.master = master
         self.servers = servers
@@ -39,7 +41,8 @@ class ServersView:
     def getservers(self):
         return self.servers
 
-    def update_servers(self,servers):
+    def update_servers(self,servers=None):
+        servers = self.serversdata if servers is None else servers
         lst = []
         self.servers = servers
         for server in servers:
