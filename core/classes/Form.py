@@ -45,8 +45,9 @@ class FormView:
 
     def setOnSubmit(self,action=None,text=None):
         if action is not None:
-            self.submitButton.on_click = lambda event: action(event,self.field_elems)
-        self.submitButton.on_click = action
+            def on_click(event):
+                action(event,self.field_elems)
+            self.submitButton.on_click = on_click
         if text is not None:
             self.submitButton.text = text
 
