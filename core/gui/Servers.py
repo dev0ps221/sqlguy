@@ -23,7 +23,7 @@ class ServersView:
             self.update_servers()
             self.build_components()
             self.servers_container.update()
-            
+
     def __init__(self,master,servers=[]):
         self.master = master
         self.servers = servers
@@ -48,8 +48,13 @@ class ServersView:
         lst = []
         self.servers = servers
         for server in servers:
-            serverButton = ElevatedButton(text=server.host)
-            lst.append(serverButton)
+            serverContainer = Container(expand=True)
+            serverColumn = Column()
+            serverName = Text(value=server.host)
+            serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.RED)
+            serverColumn.controls = [serverName,serverButton]
+            serverContainer.content = serverColumn
+            lst.append(serverContainer)
         self.servers = lst
         return self.getservers()
 
