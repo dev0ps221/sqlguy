@@ -6,11 +6,13 @@ class FieldElem:
         self.build_elem()
 
     def build_elem(self):
+
+        if 'name' in self.data:
+            self.name = self.data['name']
+            
         if 'type' in self.data:
             if self.data['type'] == 'text':
                 self.elem = TextFieldElem(self.data)
-                print(self.data)
-                print(self.elem)
 
 class TextFieldElem:
     data = {} 
@@ -21,14 +23,16 @@ class TextFieldElem:
             self.data[key] = data[key]
 
     def build_elem(self):
+        if 'name' in self.data:
+            self.name = self.data['name']
         if 'password' in self.data:
             self.elem.password = self.data['password']
             if 'can_reveal_password' in self.data:
                 self.elem.can_reveal_password =  self.data['can_reveal_password']
         if 'label' in self.data:
             self.elem.label = self.data['label']
-        if 'name' in self.data:
-            self.name = name
+            if not getattr(self,'name'):
+                self.name = self.elem.label 
 
     def __init__(self,data):
         self.elem = TextField()

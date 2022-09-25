@@ -10,7 +10,7 @@ class ServersView:
     servers = []
 
     def add_server(self,event,fields):
-        [print(field.elem.elem) for field in fields]
+        [print(field.name) for field in fields]
 
     def __init__(self,master,servers=[]):
         self.master = master
