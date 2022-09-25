@@ -27,6 +27,8 @@ class TextFieldElem:
                 self.elem.can_reveal_password =  self.data['can_reveal_password']
         if 'label' in self.data:
             self.elem.label = self.data['label']
+        if 'name' in self.data:
+            self.name = name
 
     def __init__(self,data):
         self.elem = TextField()
