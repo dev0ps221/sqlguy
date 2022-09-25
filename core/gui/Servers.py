@@ -40,4 +40,6 @@ class ServersView:
         self.server_view.update()
 
     def append_to(self,target):
+        self.container.width = target.width
+        self.servers_container.width = target.width
         target.controls.append(self.container)
