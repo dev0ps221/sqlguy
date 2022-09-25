@@ -68,8 +68,9 @@ class FormView:
     def refresh(self):
         self.container.update() 
 
-    def __init__(self,fields):
-        print(fields)
+    def __init__(self,fields,OnSubmit=None):
         self.fields = fields
+        if OnSubmit is not None:
+            self.setOnSubmit(OnSubmit)
         self.assign_fields()
         self.mount_fields()
