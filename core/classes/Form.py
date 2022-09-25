@@ -31,7 +31,10 @@ class FormView:
     submitButton = ElevatedButton(text='ok')
     container = Column()
     
+
     def append_to(self,target):
+        self.container.width = target.width
+        target.controls.append(self.container)
 
     def setOnSubmit(self,action,text=None):
         if text is not None:
