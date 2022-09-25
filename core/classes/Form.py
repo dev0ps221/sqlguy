@@ -1,4 +1,4 @@
-from flet import TextField,ElevatedButton
+from flet import TextField,ElevatedButton,Column
 class FieldElem:
     elem = None
     def __init__(self,data):
@@ -29,6 +29,9 @@ class TextFieldElem:
 class FormView:
     field_elems = []
     submitButton = ElevatedButton(text='ok')
+    container = Column()
+    
+    def append_to(self,target):
 
     def setOnSubmit(self,action,text=None):
         if text is not None:
@@ -58,10 +61,13 @@ class ServerForm:
         },{
             'type':'text',
             'label':'password',
-            ,'password'=True
-            ,'can_reveal_password'=True
+            'password':True,
+            'can_reveal_password':True
         }
     ]
     
     def __init__(self):
         self.formview = FormView(self.fields_template)
+
+addServerView = ServerForm() 
+print(addServerView.formview.elem)
