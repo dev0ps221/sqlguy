@@ -1,4 +1,4 @@
-
+from flet import TextField,ElevatedButton
 class FieldElem:
     elem = None
     def __init__(self,data):
@@ -11,7 +11,7 @@ class FieldElem:
 
 class TextFieldElem:
     data = {}
-    elem = Text() 
+    elem = TextField() 
 
     def set_data(self,data):
         self.rawdata = data
@@ -27,10 +27,21 @@ class TextFieldElem:
         self.build_elem()
 
 class FormView:
-    field_elems = {}
+    field_elems = []
+    submitButton = ElevatedButton(text='ok')
+
+    def setOnSubmit(self,action,text=None):
+        if text is not None:
+            self.submitButton.text = text
+            self.submitButton.on_click = action
 
     def build_field_elem(self,field):
+        return FieldElem(field)
 
+    def assign_fields(self):
+        for field in self.fields:
+            self.field_elems.append(self.build_field_elem(field))
 
     def __init__(self,fields):
         self.fields = fields
+        self.assign_fields()
