@@ -48,6 +48,12 @@ class FormView:
         for field in self.fields:
             self.field_elems.append(self.build_field_elem(field))
 
+    def mount_fields(self):
+        controls = []
+        for elem in self.field_elems:
+            controls.append(elem)
+        controls.append(self.submitButton) 
+
     def __init__(self,fields):
         self.fields = fields
         self.assign_fields()
