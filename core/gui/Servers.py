@@ -9,7 +9,7 @@ from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 class ServersView:
 
     container = Container()
-    servers_container = Column()
+    servers_container = Column(scroll='adaptive')
     servers = []
     serversdata = []
 
@@ -48,7 +48,7 @@ class ServersView:
         lst = []
         self.servers = servers
         for server in servers:
-            serverContainer = Container(expand=True)
+            serverContainer = Container()
             serverColumn = Column()
             serverName = Text(value=server.host)
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
@@ -64,5 +64,7 @@ class ServersView:
     def append_to(self,target):
         self.container.width = target.width
         self.servers_container.width = target.width
+        self.container.height = target.height
+        self.servers_container.height = target.height
         target.controls.append(self.container)
         
