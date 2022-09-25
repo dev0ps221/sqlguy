@@ -9,7 +9,7 @@ class FieldElem:
 
         if 'name' in self.data:
             self.name = self.data['name']
-            
+
         if 'type' in self.data:
             if self.data['type'] == 'text':
                 self.elem = TextFieldElem(self.data)
@@ -47,6 +47,8 @@ class FormView:
 
     def append_to(self,target):
         self.container.width = target.width
+        for elem in self.field_elems:
+            elem.elem.elem.width = target.width
         target.controls.append(self.container)
 
     def setOnSubmit(self,action=None,text=None):
