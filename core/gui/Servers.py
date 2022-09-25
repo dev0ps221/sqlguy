@@ -10,7 +10,12 @@ class ServersView:
     servers = []
 
     def add_server(self,event,fields):
-        [print(field.name) for field in fields]
+        data = {}
+        for field in fields:
+            if hasattr(field,'name'):
+                data[field.name] = field.elem.elem.value
+        if 'host' in data and 'username' in data and 'password' in data:
+            print('we are ready to go, its a valid server')
 
     def __init__(self,master,servers=[]):
         self.master = master
