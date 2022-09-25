@@ -16,5 +16,5 @@ class ServerForm:
         }
     ]
     
-    def __init__(self):
-        self.formview = FormView(self.fields_template)
+    def __init__(self,OnSubmit):
+        self.formview = FormView(self.fields_template,OnSubmit=OnSubmit)

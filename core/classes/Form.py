@@ -43,10 +43,12 @@ class FormView:
         self.container.width = target.width
         target.controls.append(self.container)
 
-    def setOnSubmit(self,action,text=None):
+    def setOnSubmit(self,action=None,text=None):
+        if action is not None:
+            self.submitButton.on_click = lambda event: action(event,self.field_elems)
+        self.submitButton.on_click = action
         if text is not None:
             self.submitButton.text = text
-            self.submitButton.on_click = action
 
     def build_field_elem(self,field):
         return FieldElem(field)
@@ -60,7 +62,6 @@ class FormView:
         controls = []
         for elem in self.field_elems:
             field_elem = elem.elem.elem
-            print(field_elem)
             controls.append(field_elem)
         controls.append(self.submitButton)
         self.container.controls = controls

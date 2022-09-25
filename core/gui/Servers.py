@@ -8,11 +8,16 @@ from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
 class ServersView:
 
     servers = []
-    add_server_form = ServerForm()
+
+    def add_server(self,event,fields):
+        print("lets add a new server")
+        print(event)
+        print(fields)
 
     def __init__(self,master,servers=[]):
         self.master = master
         self.servers = servers
+        self.add_server_form = ServerForm(OnSubmit=self.add_server)
         self.update_servers(self.servers)
         self.build_components()
 
