@@ -17,14 +17,13 @@ class TextFieldElem:
     def set_data(self,data):
         self.rawdata = data
         for key in data.keys():
-            self.data[key] = key
+            self.data[key] = data[key]
 
     def build_elem(self):
         if 'password' in self.data:
-            self.elem.password = True
+            self.elem.password = self.data['password']
             if 'can_reveal_password' in self.data:
-                print(self.data['can_reveal_password'])
-                self.elem.can_reveal_password =  True
+                self.elem.can_reveal_password =  self.data['can_reveal_password']
         if 'label' in self.data:
             self.elem.label = self.data['label']
 
