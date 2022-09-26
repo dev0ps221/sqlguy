@@ -7,6 +7,7 @@ from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
 
 class SQLGUY:
+    
 
     connected_servers = []
     is_logged = None
