@@ -28,7 +28,7 @@ class SQLGUY:
 
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
         try:
-            cursor = serverinstance.connect()
+            cursor = serverinstance.start()
         except Exception as e:
             cursor = None
         if type(cursor) is CMySQLCursor:
@@ -45,7 +45,7 @@ class SQLGUY:
         self.serverscontainer.clean()
         self.topbarcontainer.update()
         self.serverscontainer.update()
-        self.page.update()
+        self.refresh()
         
 
     def build_components(self):

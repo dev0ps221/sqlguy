@@ -66,7 +66,7 @@ class ServerInstance:
     def start(self):
         self.connect()
         self.setdata()
-        return self
+        return self.cursor
 
     def __init__(self, host, user, pwd):
         self.host = host
