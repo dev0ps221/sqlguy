@@ -55,6 +55,7 @@ class ServerActionsView:
             self.serveractions_container.controls.append(self.serveractions)
 
         self.container.content = self.serveractions_container
+        
         if self.lasttarget:
             self.append_to(self.lasttarget)
             self.lasttarget.update()
