@@ -60,6 +60,9 @@ class ServerInstance:
     def __repr__(self):
         return f"{self.user}@{self.host}:{self.getdatabases()}"
 
+    def __fidrepr__(self):
+        return f"{self.user}:{self.pwd}@{self.host}:{self.getdatabases()}"
+
     def start(self):
         self.connect()
         self.setdata()

@@ -7,7 +7,7 @@ from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
 
 class SQLGUY:
-    
+
 
     connected_servers = []
     is_logged = None
@@ -21,6 +21,10 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
      
+    def select_server(self,idx):
+        self.actual_server = self.connected_servers[idx]
+        print(self.actual_server.__fidrepr__())
+
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
         try:
             cursor = serverinstance.connect()
@@ -31,6 +35,7 @@ class SQLGUY:
             serveridx = len(self.connected_servers) - 1 
             serverButton.bgcolor = colors.RED_200
             selectButton.disabled = False
+            selectButton.on_click = lambda x:self.select_server(serveridx)
             serverButton.text = "DISCONNECT"
             serverscontainer.update()
 
