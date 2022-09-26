@@ -17,15 +17,15 @@ class DatabasesView:
     def update(self):
         self.build_components()
         self.databases_container.update()
+        self.container.update()
 
     def build_components(self):
         if self.master.actual_server:
             self.databases_container.controls = []
-            for database in self.actual_server.getdatabases():
+            for database in self.master.actual_server.getdatabases():
                 databasebutton = ElevatedButton(text=database.name) 
-                self.databases_container.controls.add(databasebutton)
-                print(database.name)
-        self.container.content =self.databases_container
+                self.databases_container.controls.append(databasebutton)
+        self.container.content = self.databases_container
 
     def update_form(self):
         self.form.update()

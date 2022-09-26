@@ -23,7 +23,6 @@ class SQLGUY:
      
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
-        print(self.actual_server.__fidrepr__())
         self.refresh_view()
 
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
