@@ -55,9 +55,9 @@ class ServersView:
         lst = []
         self.servers = servers
         for server in servers:
-            serverContainer = Container()
+            serverContainer = Container(bgcolor=colors.BLUE_500)
             serverColumn = Column()
-            serverName = Text(value=server.host)
+            serverName = Text(value=server.__repr__())
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
             serverButton.on_click=lambda x: self.master.connect_server(server,self.servers_container,serverButton)
             serverColumn.controls = [serverName,serverButton]
