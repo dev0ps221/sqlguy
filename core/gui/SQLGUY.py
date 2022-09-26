@@ -16,11 +16,22 @@ class SQLGUY:
     topbarcontainer = Row()
     middlecontainer = Row()
     viewcontainer = Container(bgcolor=colors.GREEN_200)
-    view = Column()
+    view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.ORANGE_200)
     serverscolumn = Column()
     container = Column()
      
+    def list_databases(self):
+        if self.actual_server:
+            self.view.controls = []
+            for db in self.actual_server.getdatabases():
+                dbrow = Row()
+                dbname = Text(value=db.name)
+                dbrow.controls = [dbname]
+                self.view.controls.append(dbrow)
+            self.view.update()
+            print('lets show the databases...')
+
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
         self.ServerActions.update()

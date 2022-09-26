@@ -45,7 +45,9 @@ class ServerActionsView:
     def on_select_view(self,event,view):
         self.select_view(view)
             
-
+    def trigger_list_databases(self):
+        self.master.list_databases()
+        
     def build_components(self):
         if self.master.actual_server:
             self.serveractions.controls = []
@@ -54,6 +56,7 @@ class ServerActionsView:
             if self.selected_view:
                 if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
+                    self.trigger_list_databases()        
         self.container.content = self.serveractions_container
 
         if self.master.actual_server:
