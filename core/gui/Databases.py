@@ -6,6 +6,7 @@ from core.classes.ServerInstance import ServerInstance
 
 class DatabasesView:
     server = None
+    selected_database = None
     databases_container_label=Text(value='DATABASES')
     databases = Row(scroll='adaptive')
     databases_container = Column()
@@ -20,11 +21,18 @@ class DatabasesView:
         self.build_components()
         self.container.update()
 
+    def select_database(self,name):
+        for database in self.getdatabases():
+            if database.name == name:
+                self.selected_database = database
+
     def build_components(self):
         if self.master.actual_server:
             self.databases_container.controls = []
             for database in self.master.actual_server.getdatabases():
-                databasebutton = ElevatedButton(text=database.name) 
+                databasebutton = ElevatedButton(text=database.name,on_click=lambda x:self.select_database(database.name)) 
+                if self.selected_database is not None and self.selected_database.name == database.name:
+                    databasebutton.bgcolor = colors.GREEN_400
                 self.databases.controls.append(databasebutton)
             self.databases_container.controls.append(self.databases_container_label)
             self.databases_container.controls.append(self.databases)
