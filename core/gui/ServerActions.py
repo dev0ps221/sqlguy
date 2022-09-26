@@ -50,10 +50,10 @@ class ServerActionsView:
             self.serveractions.controls = []
             if self.selected_view is None :
                 self.select_view('list')
-            
             self.serveractions.controls.append(self.listdatabasebutton)
             self.serveractions_container.controls.append(self.serveractions_container_label)
             self.serveractions_container.controls.append(self.serveractions)
+
         self.container.content = self.serveractions_container
         if self.lasttarget:
             self.append_to(self.lasttarget)
