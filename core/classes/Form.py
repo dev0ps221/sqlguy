@@ -48,7 +48,7 @@ class FormView:
     def append_to(self,target):
         self.container.width = target.width
         for elem in self.field_elems:
-            elem.elem.elem.width = target.width
+            elem.elem.elem.width = int(target.width-10)
         target.controls.append(self.container)
 
     def setOnSubmit(self,action=None,text=None):
