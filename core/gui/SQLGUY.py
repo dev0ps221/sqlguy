@@ -23,8 +23,6 @@ class SQLGUY:
      
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
-        self.Databases.build_components()
-        self.Databases.container.update()
         self.refresh_view()
 
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
@@ -45,6 +43,8 @@ class SQLGUY:
         self.page.update()
         self.topbarcontainer.clean()
         self.serverscontainer.clean()
+        self.topbarcontainer.update()
+        self.serverscontainer.update()
         self.refresh()
         
 
@@ -78,6 +78,8 @@ class SQLGUY:
 
     def refresh(self):
         self.page.update()
+        self.Servers.update()
+        self.Databases.update()
     
     def wwidth(self):
         return int(self.page.window_width)
