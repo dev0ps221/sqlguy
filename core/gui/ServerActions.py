@@ -5,6 +5,7 @@ from core.classes.ServerInstance import ServerInstance
 
 
 class ServerActionsView:
+    lasttarget = None
     server = None
     selected_database = None
     selected_view = None
@@ -14,6 +15,7 @@ class ServerActionsView:
     databases_container = Column()
     container = Container(bgcolor=colors.BLUE_200)
     listdatabasebutton = ElevatedButton(text='list',on_click=lambda x :self.on_click(x,x.control.text))
+   
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
@@ -21,6 +23,7 @@ class ServerActionsView:
     def update(self):
         self.container.clean()
         self.build_components()
+        self.master.topbarcontainer.update()
         self.container.update()
 
     def select_database(self,name):
@@ -50,6 +53,7 @@ class ServerActionsView:
         self.databases_container.controls.append(self.databases_container_label)
         self.databases_container.controls.append(self.databases)
         self.container.content = self.databases_container
+        
 
     def on_select_view(self,view):
         self.select_view(view)
@@ -68,10 +72,12 @@ class ServerActionsView:
             self.databases_container.controls.append(self.serveractions)
         self.container.content = self.databases_container
         
+
     def update_form(self):
         self.form.update()
 
     def append_to(self,target):
+        self.lasttarget = target
         target.controls = []
         self.container.width = target.width
         self.databases_container.width = target.width
