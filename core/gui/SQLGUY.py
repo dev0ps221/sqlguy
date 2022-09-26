@@ -29,7 +29,7 @@ class SQLGUY:
             self.connected_servers.append(serverinstance)
             serveridx = len(self.connected_servers) - 1 
             serverButton.bgcolor = colors.RED_200
-            selectButton.disable = False
+            selectButton.disabled = False
             serverButton.text = "DISCONNECT"
             serverscontainer.update()
 
