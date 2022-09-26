@@ -1,5 +1,5 @@
 from core.gui.Servers import ServersView
-from core.gui.Databases import DatabasesView
+from core.gui.ServerActions import ServerActionsView
 from flet import Page,Column,Container,Row,Text,ElevatedButton,colors
 from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
@@ -23,7 +23,7 @@ class SQLGUY:
      
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
-        self.Databases.update()
+        self.ServerActions.update()
         self.refresh_view()
 
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
@@ -47,7 +47,7 @@ class SQLGUY:
         
 
     def build_components(self):
-        self.Databases   =   DatabasesView(self)
+        self.ServerActions   =   ServerActionsView(self)
         self.Servers  =   ServersView(self)
         self.page.clean()
         self.viewcontainer.content = self.view
@@ -72,7 +72,7 @@ class SQLGUY:
         self.page.add(self.container)
         self.topbarcontainer.clean()
         self.serverscontainer.clean()
-        self.Databases.append_to(self.topbarcontainer)        
+        self.ServerActions.append_to(self.topbarcontainer)        
         self.Servers.append_to(self.serverscolumn)
 
     def refresh(self):
