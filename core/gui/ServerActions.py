@@ -52,7 +52,7 @@ class ServerActionsView:
             self.serveractions.controls.append(self.listdatabasebutton)
             self.serveractions_container.controls = [self.serveractions_container_label,self.serveractions]
             if self.selected_view:
-                if self.selected_view == self.listdatabasebutton.text
+                if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
         self.container.content = self.serveractions_container
 
