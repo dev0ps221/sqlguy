@@ -24,6 +24,7 @@ class SQLGUY:
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
         print(self.actual_server.__fidrepr__())
+        self.refresh_view()
 
     def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
         try:
@@ -42,8 +43,6 @@ class SQLGUY:
     def refresh_view(self):
         self.topbarcontainer.clean()
         self.serverscontainer.clean()
-        self.Databases.append_to(self.topbarcontainer)        
-        self.Servers.append_to(self.serverscolumn)        
         self.topbarcontainer.update()
         self.serverscontainer.update()
         self.page.update()
@@ -73,10 +72,14 @@ class SQLGUY:
         self.container.padding = 0
         self.serverscontainer.content = self.serverscolumn
         self.page.add(self.container)
+        self.Databases.append_to(self.topbarcontainer)        
+        self.Servers.append_to(self.serverscolumn)        
         self.refresh()
 
     def refresh(self):
         self.page.update()
+        self.Databases.update()
+        self.Servers.update()
     
     def wwidth(self):
         return int(self.page.window_width)

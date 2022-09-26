@@ -6,15 +6,21 @@ from core.classes.ServerInstance import ServerInstance
 
 class DatabasesView:
     server = None
+    databases_container = Column()
+    container = Container(bgcolor=colors.BLUE_200)
 
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
         self.build_components()
         
+    def update(self):
+        self.build_components()
+        self.databases_container.update()
+
     def build_components(self):
-        self.container = Container(bgcolor=colors.BLUE_200)
-        self.databases_container = Column()
+        if self.master.actual_server:
+            print(self.master.actual_server.getdatabases())
         self.container.content =self.databases_container
 
     def update_form(self):
