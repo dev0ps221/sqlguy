@@ -32,9 +32,13 @@ class DatabasesView:
 
     def build_components(self):
         self.databases_container.controls = []
-        for database in self.master.actual_server.getdatabases():
-            databasebutton = ElevatedButton(text=database.name,on_click=lambda x:self.select_database(database.name)) 
+        self.databases.controls = []
+        for database in self.getdatabases():
+            def on_click(x):
+                self.select_database(x.control.text)
+            databasebutton = ElevatedButton(text=database.name,on_click=on_click) 
             if self.selected_database is not None and self.selected_database.name == database.name:
+                print('bileu ',self.selected_database.name)
                 databasebutton.bgcolor = colors.GREEN_400
             self.databases.controls.append(databasebutton)
         self.databases_container.controls.append(self.databases_container_label)
