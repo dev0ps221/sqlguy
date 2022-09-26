@@ -58,7 +58,7 @@ class ServerInstance:
         self.data = {'databases':self.process_databases(self.executereq('show databases'))}
 
     def __repr__(self):
-        return f"{self.host}:{self.getdatabases()}"
+        return f"{self.username}@{self.host}:{self.getdatabases()}"
 
     def start(self):
         self.connect()
