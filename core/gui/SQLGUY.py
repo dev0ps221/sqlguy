@@ -26,7 +26,8 @@ class SQLGUY:
         except Exception as e:
             cursor = None
         if type(cursor) is CMySQLCursor:
-            serverButton.bgcolor = colors.GREEN_200
+            serverButton.bgcolor = colors.RED_200
+            serverButton.text = "DISCONNECT"
             serverscontainer.update()
 
     def refresh_view(self):
