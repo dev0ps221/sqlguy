@@ -21,6 +21,9 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
      
+    def __init__(self):
+        self.view.padding=20
+
     def list_databases(self):
         if self.actual_server:
             self.view.controls = []
