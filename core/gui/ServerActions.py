@@ -13,11 +13,13 @@ class ServerActionsView:
     serveractions = Row(scroll='adaptive')
     serveractions_container = Column()
     container = Container(bgcolor=colors.BLUE_200)
-    listdatabasebutton = ElevatedButton(text='list',on_click=lambda x :self.on_click(x,x.control.text))
+    listdatabasebutton = ElevatedButton(text='list')
    
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
+        self.serveractions_container.controls = []
+        self.listdatabasebutton.on_click=lambda x :self.on_select_view(x,x.control.text)
         
     def update(self):
         self.container.clean()
@@ -35,26 +37,28 @@ class ServerActionsView:
     def select_view(self,view):
         self.selected_view = view
         self.update()
+        self.serveractions.update()
 
     def getdatabases(self):
         return self.master.actual_server.getdatabases() if self.master.actual_server else []
 
-    def on_select_view(self,view):
+    def on_select_view(self,event,view):
         self.select_view(view)
             
 
     def build_components(self):
-        self.serveractions_container.controls = []
-       
         if self.master.actual_server:
             self.serveractions.controls = []
+            self.serveractions.controls.append(self.listdatabasebutton)
+            self.serveractions_container.controls = [self.serveractions_container_label,self.serveractions]
+            if self.selected_view:
+                if self.selected_view == self.listdatabasebutton.text:
+                    self.listdatabasebutton.bgcolor = colors.BLUE_200
+        self.container.content = self.serveractions_container
+
+        if self.master.actual_server:
             if self.selected_view is None :
                 self.select_view('list')
-            self.serveractions.controls.append(self.listdatabasebutton)
-            self.serveractions_container.controls.append(self.serveractions_container_label)
-            self.serveractions_container.controls.append(self.serveractions)
-
-        self.container.content = self.serveractions_container
         
         if self.lasttarget:
             self.append_to(self.lasttarget)
