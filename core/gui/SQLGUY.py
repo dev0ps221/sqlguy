@@ -20,13 +20,16 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
      
-    def connect_server(self,event,serverinstance,serverscontainer,serverButton):
+    def connect_server(self,event,serverinstance,serverscontainer,serverButton,selectButton):
         try:
             cursor = serverinstance.connect()
         except Exception as e:
             cursor = None
         if type(cursor) is CMySQLCursor:
+            self.connected_servers.append(serverinstance)
+            serveridx = len(self.connected_servers) - 1 
             serverButton.bgcolor = colors.RED_200
+            selectButton.disable = False
             serverButton.text = "DISCONNECT"
             serverscontainer.update()
 

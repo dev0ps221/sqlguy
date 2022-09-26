@@ -60,9 +60,12 @@ class ServersView:
             serverContainer.padding = 15
             serverColumn = Column()
             serverName = Text(value=server.__repr__())
+            buttons = Row()
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.GREEN_200)
             serverButton.on_click=lambda x: self.master.connect_server(x,server,self.servers_container,serverButton)
-            serverColumn.controls = [serverName,serverButton]
+            selectButton = ElevatedButton(text='SELECT',disabled=True,bgcolor=colors.BLUE_400)
+            buttons.controls = [serverButton,selectButton]
+            serverColumn.controls = [serverName,buttons]
             serverContainer.content = serverColumn
             lst.append(serverContainer)
         self.servers = lst
