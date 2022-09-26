@@ -1,6 +1,6 @@
 from core.classes.ServerInstance import ServerInstance
 from core.gui.Forms import ServerForm
-from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
+from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors, alignment
 
 
 
@@ -35,7 +35,11 @@ class ServersView:
 
     def build_components(self):
         self.servers_container.controls = []
-        self.servers_container.width = self.master.wwidth()
+        self.servers_container.width = int(self.master.wwidth()*(30/100))
+        addserverlabeltext = Text(value='ADD A SERVER',bgcolor=colors.WHITE)
+        addserverlabeltext.width = self.add_server_form.
+        addserverlabeltext.alignment=alignment.center
+        self.servers_container.controls.append(addserverlabeltext)
         self.add_server_form.formview.append_to(self.servers_container)
         for server in self.getservers():
             self.servers_container.controls.append(server)
@@ -52,6 +56,7 @@ class ServersView:
             serverContainer = Container()
             serverColumn = Column()
             serverName = Text(value=server.host)
+            serverName.on_click = lambda e:print('clicked on that server...')
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
             serverColumn.controls = [serverName,serverButton]
             serverContainer.content = serverColumn
