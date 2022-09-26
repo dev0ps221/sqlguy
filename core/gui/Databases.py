@@ -7,7 +7,7 @@ from core.classes.ServerInstance import ServerInstance
 class DatabasesView:
     server = None
     databases_container_label=Text(value='DATABASES')
-    databases = Row()
+    databases = Row(scroll='adaptive')
     databases_container = Column()
     container = Container(bgcolor=colors.BLUE_200)
 
