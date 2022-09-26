@@ -36,10 +36,12 @@ class ServersView:
     def build_components(self):
         self.servers_container.controls = []
         self.servers_container.width = int(self.master.wwidth()*(30/100))
-        addserverlabeltext = Text(value='ADD A SERVER',bgcolor=colors.WHITE)
-        addserverlabeltext.width = self.add_server_form.
-        addserverlabeltext.alignment=alignment.center
-        self.servers_container.controls.append(addserverlabeltext)
+        addserverlabelcontainer = Container(bgcolor=colors.WHITE)
+        addserverlabeltext = Text(value='ADD A SERVER')
+        addserverlabelcontainer.width = self.master.serverscolumn.width
+        addserverlabelcontainer.alignment=alignment.center
+        addserverlabelcontainer.content = addserverlabeltext
+        self.servers_container.controls.append(addserverlabelcontainer)
         self.add_server_form.formview.append_to(self.servers_container)
         for server in self.getservers():
             self.servers_container.controls.append(server)
