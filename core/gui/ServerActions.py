@@ -17,7 +17,6 @@ class ServerActionsView:
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
-        self.build_components()
         
     def update(self):
         self.container.clean()
@@ -65,10 +64,10 @@ class ServerActionsView:
                 self.select_view('list')
             
             self.serveractions.controls.append(self.listdatabasebutton)
-
-        self.databases_container.controls.append(self.databases_container_label)
-        self.databases_container.controls.append(self.serveractions)
+            self.databases_container.controls.append(self.databases_container_label)
+            self.databases_container.controls.append(self.serveractions)
         self.container.content = self.databases_container
+        self.databases_container.update()
 
     def update_form(self):
         self.form.update()
