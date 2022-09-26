@@ -16,7 +16,6 @@ class DatabasesView:
         
     def update(self):
         self.build_components()
-        self.databases_container.update()
         self.container.update()
 
     def build_components(self):
