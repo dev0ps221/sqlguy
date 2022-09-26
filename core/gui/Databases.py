@@ -36,4 +36,6 @@ class DatabasesView:
     def append_to(self,target):
         self.container.width = target.width
         self.databases_container.width = target.width
+        self.container.height = target.height
+        self.databases_container.height = target.height
         target.controls.append(self.container)
