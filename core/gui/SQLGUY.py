@@ -1,7 +1,7 @@
 from core.gui.Servers import ServersView
 from core.gui.Databases import DatabasesView
 from flet import Page,Column,Container,Row,Text,ElevatedButton,colors
-
+from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
 
 
@@ -20,9 +20,14 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
      
-    def connect_server(event,serverinstance,servercontainer,serverButton):
-        print('new server connection')
-        print(serverinstance)
+    def connect_server(self,event,serverinstance,serverscontainer,serverButton):
+        try:
+            cursor = serverinstance.connect()
+        except Exception as e:
+            cursor = None
+        if type(cursor) is CMySQLCursor:
+            serverButton.bgcolor = colors.GREEN_200
+            serverscontainer.update()
 
     def refresh_view(self):
         self.topbarcontainer.clean()

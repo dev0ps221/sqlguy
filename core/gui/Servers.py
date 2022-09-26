@@ -55,11 +55,13 @@ class ServersView:
         lst = []
         self.servers = servers
         for server in servers:
-            serverContainer = Container(bgcolor=colors.BLUE_500)
+            serverContainer = Container(bgcolor=colors.BLUE_100)
+            serverContainer.width = int(self.master.wwidth()*(30/100))
+            serverContainer.padding = 15
             serverColumn = Column()
             serverName = Text(value=server.__repr__())
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
-            serverButton.on_click=lambda x: self.master.connect_server(server,self.servers_container,serverButton)
+            serverButton.on_click=lambda x: self.master.connect_server(x,server,self.servers_container,serverButton)
             serverColumn.controls = [serverName,serverButton]
             serverContainer.content = serverColumn
             lst.append(serverContainer)
