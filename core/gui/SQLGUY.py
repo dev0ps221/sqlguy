@@ -15,14 +15,11 @@ class SQLGUY:
     actual_view = 'login'
     topbarcontainer = Row()
     middlecontainer = Row()
-    viewcontainer = Container(bgcolor=colors.GREEN_200)
+    viewcontainer = Container(bgcolor=colors.GREEN_200,padding=20)
     view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.ORANGE_200)
     serverscolumn = Column()
     container = Column()
-     
-    def __init__(self):
-        self.view.padding=20
 
     def list_databases(self):
         if self.actual_server:
