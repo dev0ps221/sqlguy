@@ -58,7 +58,6 @@ class ServersView:
             serverContainer = Container()
             serverColumn = Column()
             serverName = Text(value=server.host)
-            serverName.on_click = lambda e:print('clicked on that server...')
             serverButton = ElevatedButton(text='CONNECT',bgcolor=colors.ORANGE)
             serverColumn.controls = [serverName,serverButton]
             serverContainer.content = serverColumn

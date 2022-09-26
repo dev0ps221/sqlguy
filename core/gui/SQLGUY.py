@@ -20,9 +20,10 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
      
-    def connect_server(event,serverinstance,serverelem):
+    def connect_server(event,serverinstance,servercontainer,serverButton):
         print('new server connection')
-        
+        print(serverinstance)
+
     def refresh_view(self):
         self.topbarcontainer.clean()
         self.serverscontainer.clean()
