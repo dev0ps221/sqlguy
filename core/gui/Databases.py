@@ -25,17 +25,20 @@ class DatabasesView:
         for database in self.getdatabases():
             if database.name == name:
                 self.selected_database = database
+        self.update()
+
+    def getdatabases(self):
+        return self.master.actual_server.getdatabases() if self.master.actual_server else []
 
     def build_components(self):
-        if self.master.actual_server:
-            self.databases_container.controls = []
-            for database in self.master.actual_server.getdatabases():
-                databasebutton = ElevatedButton(text=database.name,on_click=lambda x:self.select_database(database.name)) 
-                if self.selected_database is not None and self.selected_database.name == database.name:
-                    databasebutton.bgcolor = colors.GREEN_400
-                self.databases.controls.append(databasebutton)
-            self.databases_container.controls.append(self.databases_container_label)
-            self.databases_container.controls.append(self.databases)
+        self.databases_container.controls = []
+        for database in self.master.actual_server.getdatabases():
+            databasebutton = ElevatedButton(text=database.name,on_click=lambda x:self.select_database(database.name)) 
+            if self.selected_database is not None and self.selected_database.name == database.name:
+                databasebutton.bgcolor = colors.GREEN_400
+            self.databases.controls.append(databasebutton)
+        self.databases_container.controls.append(self.databases_container_label)
+        self.databases_container.controls.append(self.databases)
         self.container.content = self.databases_container
 
     def update_form(self):
