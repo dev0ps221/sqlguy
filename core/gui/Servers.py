@@ -35,6 +35,7 @@ class ServersView:
 
     def build_components(self):
         self.servers_container.controls = []
+        self.servers_container.width = self.master.wwidth()
         self.add_server_form.formview.append_to(self.servers_container)
         for server in self.getservers():
             self.servers_container.controls.append(server)

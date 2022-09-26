@@ -29,11 +29,10 @@ class SQLGUY:
         self.serverscontainer.update()
         self.page.update()
         
-    def __init__(self):
-        self.Databases   =   DatabasesView(self)
-        self.Servers  =   ServersView(self)
 
     def build_components(self):
+        self.Databases   =   DatabasesView(self)
+        self.Servers  =   ServersView(self)
         self.page.clean()
         self.viewcontainer.content = self.view
         self.container.width = self.wwidth()
