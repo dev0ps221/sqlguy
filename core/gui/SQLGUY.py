@@ -15,7 +15,7 @@ class SQLGUY:
     actual_view = 'login'
     topbarcontainer = Row()
     middlecontainer = Row()
-    viewcontainer = Container(bgcolor=colors.GREEN_200,padding=20)
+    viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=20)
     view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.BLUE_GREY_200)
     serverscolumn = Column()
