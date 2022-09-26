@@ -36,6 +36,7 @@ class ServersView:
     def build_components(self):
         self.servers_container.controls = []
         self.servers_container.width = int(self.master.wwidth()*(30/100))
+        self.servers_container.height = int(self.master.wheight()*(90/100))
         addserverlabelcontainer = Container(bgcolor=colors.WHITE)
         addserverlabeltext = Text(value='ADD A SERVER')
         addserverlabelcontainer.width = self.master.serverscolumn.width

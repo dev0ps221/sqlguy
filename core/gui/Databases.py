@@ -6,6 +6,8 @@ from core.classes.ServerInstance import ServerInstance
 
 class DatabasesView:
     server = None
+    databases_container_label=Text(value='DATABASES')
+    databases = Row()
     databases_container = Column()
     container = Container(bgcolor=colors.BLUE_200)
 
@@ -23,7 +25,9 @@ class DatabasesView:
             self.databases_container.controls = []
             for database in self.master.actual_server.getdatabases():
                 databasebutton = ElevatedButton(text=database.name) 
-                self.databases_container.controls.append(databasebutton)
+                self.databases.controls.append(databasebutton)
+            self.databases_container.controls.append(self.databases_container_label)
+            self.databases_container.controls.append(self.databases)
         self.container.content = self.databases_container
 
     def update_form(self):
