@@ -67,8 +67,7 @@ class ServerActionsView:
             self.databases_container.controls.append(self.databases_container_label)
             self.databases_container.controls.append(self.serveractions)
         self.container.content = self.databases_container
-        self.databases_container.update()
-
+        
     def update_form(self):
         self.form.update()
 
