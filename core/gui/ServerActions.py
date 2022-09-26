@@ -12,7 +12,7 @@ class ServerActionsView:
     serveractions_container_label=Text(value='DATABASES')
     serveractions = Row(scroll='adaptive')
     serveractions_container = Column()
-    container = Container(bgcolor=colors.BLUE_200,padding=20)
+    container = Container(bgcolor=colors.BLUE_GREY_200,padding=20)
     listdatabasebutton = ElevatedButton(text='list')
    
     def __init__(self,master,server=None):
