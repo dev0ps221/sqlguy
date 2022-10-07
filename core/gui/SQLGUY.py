@@ -23,6 +23,7 @@ class SQLGUY:
 
     def list_databases(self):
         if self.actual_server:
+            self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []
             for db in self.actual_server.getdatabases():
                 dbrow = Row()
@@ -34,6 +35,7 @@ class SQLGUY:
 
     def create_database(self):
         if self.actual_server:
+            self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []
             self.view.update()
             print('lets create a database...')

@@ -14,8 +14,10 @@ class ServerActionsView:
     serveractions_container = Column()
     container = Container(bgcolor=colors.BLUE_GREY_200,padding=20)
     listdatabasebutton = ElevatedButton(text='list')
+    listdatabasebutton.bgcolor = colors.WHITE
     createdatabasebutton = ElevatedButton(text='create')
-   
+    createdatabasebutton.bgcolor = colors.WHITE
+
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
@@ -63,9 +65,14 @@ class ServerActionsView:
                 if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
                     self.trigger_list_databases()
+                else:
+                    self.listdatabasebutton.bgcolor = colors.WHITE
+                    
                 if self.selected_view == self.createdatabasebutton.text:
                     self.createdatabasebutton.bgcolor = colors.GREEN_100
                     self.trigger_create_database()        
+                else:
+                    self.createdatabasebutton.bgcolor = colors.WHITE
         self.container.content = self.serveractions_container
 
         if self.master.actual_server:
