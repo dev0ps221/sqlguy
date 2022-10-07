@@ -32,6 +32,12 @@ class SQLGUY:
             self.view.update()
             print('lets show the databases...')
 
+    def create_database(self):
+        if self.actual_server:
+            self.view.controls = []
+            self.view.update()
+            print('lets create a database...')
+
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]
         self.ServerActions.update()

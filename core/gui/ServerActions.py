@@ -51,7 +51,7 @@ class ServerActionsView:
         self.master.list_databases()
 
     def trigger_create_database(self):
-        self.master.create_create_database()
+        self.master.create_database()
         
     def build_components(self):
         if self.master.actual_server:
