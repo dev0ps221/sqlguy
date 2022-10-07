@@ -14,12 +14,14 @@ class ServerActionsView:
     serveractions_container = Column()
     container = Container(bgcolor=colors.BLUE_GREY_200,padding=20)
     listdatabasebutton = ElevatedButton(text='list')
+    createdatabasebutton = ElevatedButton(text='create')
    
     def __init__(self,master,server=None):
         self.master = master
         self.server = server
         self.serveractions_container.controls = []
         self.listdatabasebutton.on_click=lambda x :self.on_select_view(x,x.control.text)
+        self.createdatabasebutton.on_click=lambda x :self.on_select_view(x,x.control.text)
         
     def update(self):
         self.container.clean()
@@ -47,16 +49,23 @@ class ServerActionsView:
             
     def trigger_list_databases(self):
         self.master.list_databases()
+
+    def trigger_create_database(self):
+        self.master.create_create_database()
         
     def build_components(self):
         if self.master.actual_server:
             self.serveractions.controls = []
             self.serveractions.controls.append(self.listdatabasebutton)
+            self.serveractions.controls.append(self.createdatabasebutton)
             self.serveractions_container.controls = [self.serveractions_container_label,self.serveractions]
             if self.selected_view:
                 if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
-                    self.trigger_list_databases()        
+                    self.trigger_list_databases()
+                if self.selected_view == self.createdatabasebutton.text:
+                    self.createdatabasebutton.bgcolor = colors.GREEN_100
+                    self.trigger_create_database()        
         self.container.content = self.serveractions_container
 
         if self.master.actual_server:

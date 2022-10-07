@@ -2,7 +2,6 @@ from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
     def query(self,query):
-        print(self.server.executereq(query))
         return self.server.executereq(query)
 
     def use(self):

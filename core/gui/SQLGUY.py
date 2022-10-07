@@ -97,7 +97,7 @@ class SQLGUY:
 
     def loop(self,page:Page):
         self.page = page
-        self.page.bgcolor = colors.GREEN_200
+        self.page.bgcolor = colors.BLUE_GREY_100
         self.page.padding = 0
         self.build_components()
         self.refresh_view()
