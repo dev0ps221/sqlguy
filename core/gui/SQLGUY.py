@@ -26,16 +26,26 @@ class SQLGUY:
             self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []
             for db in self.actual_server.getdatabases():
+                dbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
+                dbcolumn = Column()
+                dbcontainer.width = self.view.width
+                dbcolumn.width = self.view.width
                 dbrow = Row()
-                dbname = Text(value=db.name)
+                dbrow.width = self.view.width
+                dbname = Text(value=db.name,pad=5)
+                dbname.width = int(self.view.width*70/100)
                 dbactions = Row()
-                rename_database_button = ElevatedButton(text='rename database')
-                drop_database_button = ElevatedButton(text='drop database')
-                list_tables_button = ElevatedButton(text='list tables')
+                rename_database_button = ElevatedButton(text='rename')
+                drop_database_button = ElevatedButton(text='drop')
+                list_tables_button = ElevatedButton(text='tables')
                 drop_database_button.bgcolor = colors.RED_200
                 dbactions.controls = [rename_database_button,drop_database_button,list_tables_button] 
-                dbrow.controls = [dbname,dbactions]
-                self.view.controls.append(dbrow)
+                dbrow.controls = [dbname]
+                dbcolumn.controls.append(dbrow)
+                dbcolumn.controls.append(dbactions)
+                dbcontainer.content = dbcolumn
+                self.view.controls.append(dbcontainer)
+                
             self.view.update()
             print('lets show the databases...')
 
