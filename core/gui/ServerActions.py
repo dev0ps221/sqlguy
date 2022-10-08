@@ -63,6 +63,8 @@ class ServerActionsView:
     def build_components(self):
         if self.master.actual_server:
             self.updatedatabaselist()
+            for database in self.databaselist:
+                self.select_database.options.append(dropdown.Option(database))
             self.serveractions.controls = []
             self.serveractions.controls.append(self.listdatabasebutton)
             self.serveractions.controls.append(self.createdatabasebutton)
