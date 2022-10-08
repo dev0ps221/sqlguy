@@ -1,9 +1,10 @@
 from core.gui.Servers import ServersView
 from core.gui.ServerActions import ServerActionsView
-from flet import Page,Column,Container,Row,Text,ElevatedButton,colors
+from flet import Page,Column,Container,Row,Text,ElevatedButton,colors,alignment
 from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
 
+print(alignment.__dir__())
 
 
 class SQLGUY:
@@ -28,13 +29,12 @@ class SQLGUY:
             for db in self.actual_server.getdatabases():
                 dbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
                 dbcolumn = Column()
-                dbcontainer.width = self.view.width
-                dbcolumn.width = self.view.width
+                dbcontainer.padding = int(self.middlecontainer.width*2/100)
                 dbrow = Row()
-                dbrow.width = self.view.width
-                dbname = Text(value=db.name,pad=5)
-                dbname.width = int(self.view.width*70/100)
+                dbrow.alignment='center'
+                dbname = ElevatedButton(text=db.name)
                 dbactions = Row()
+                dbactions.alignment='center'
                 rename_database_button = ElevatedButton(text='rename')
                 drop_database_button = ElevatedButton(text='drop')
                 list_tables_button = ElevatedButton(text='tables')

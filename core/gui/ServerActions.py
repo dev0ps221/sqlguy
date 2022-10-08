@@ -1,4 +1,4 @@
-from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors
+from flet import Text, TextField, ElevatedButton, Column, Row, Container, colors,Dropdown,dropdown
 from core.classes.ServerInstance import ServerInstance
 
 
@@ -13,6 +13,8 @@ class ServerActionsView:
     serveractions = Row(scroll='adaptive')
     serveractions_container = Column()
     container = Container(bgcolor=colors.BLUE_GREY_200,padding=20)
+    databaselist = []
+    databaseselect = Dropdown()
     listdatabasebutton = ElevatedButton(text='list')
     listdatabasebutton.bgcolor = colors.WHITE
     createdatabasebutton = ElevatedButton(text='create')
@@ -55,8 +57,12 @@ class ServerActionsView:
     def trigger_create_database(self):
         self.master.create_database()
         
+    def updatedatabaselist(self):
+        self.databaselist = self.master.actual_server.getdatabases()
+
     def build_components(self):
         if self.master.actual_server:
+            self.updatedatabaselist()
             self.serveractions.controls = []
             self.serveractions.controls.append(self.listdatabasebutton)
             self.serveractions.controls.append(self.createdatabasebutton)
@@ -67,7 +73,7 @@ class ServerActionsView:
                     self.trigger_list_databases()
                 else:
                     self.listdatabasebutton.bgcolor = colors.WHITE
-                    
+
                 if self.selected_view == self.createdatabasebutton.text:
                     self.createdatabasebutton.bgcolor = colors.GREEN_100
                     self.trigger_create_database()        
