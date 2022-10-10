@@ -58,15 +58,15 @@ class ServerInstance:
         self.data = {'databases':self.process_databases(self.executereq('show databases'))}
 
     def __repr__(self):
-        return f"{self.user}@{self.host}:{self.getdatabases()}"
+        return f"{self.user}@{self.host}"
 
     def __fidrepr__(self):
-        return f"{self.user}:{self.pwd}@{self.host}:{self.getdatabases()}"
+        return f"{self.user}:{self.pwd}@{self.host}"
 
     def start(self):
         self.connect()
         self.setdata()
-        return self
+        return self.cursor
 
     def __init__(self, host, user, pwd):
         self.host = host
