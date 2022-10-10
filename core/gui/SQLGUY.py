@@ -31,7 +31,7 @@ class SQLGUY:
         if self.actual_server and self.actual_database:
             self.viewlabeltext.value = f"tables in {self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
-            self.view.controls = self.actual_database.tablelistView()
+            self.view.controls = self.actual_database.tablelistView(self)
             self.view.update()
 
     def create_database(self):
