@@ -95,6 +95,7 @@ class ServerActionsView:
 
         if self.master.actual_server:
             if self.selected_view is None :
+                print('hei')
                 self.select_view('list')
         
         if self.lasttarget:

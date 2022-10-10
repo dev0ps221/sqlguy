@@ -19,7 +19,7 @@ class SQLGUY:
     middlecontainer = Row()
     viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=5)
     viewcolumn = Column()
-    viewlabel = Container(expand=True,bgcolor=colors.WHITE)
+    viewlabel = Container(bgcolor=colors.WHITE)
     viewlabeltext = Text()
     view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.BLUE_GREY_200)
@@ -34,18 +34,21 @@ class SQLGUY:
             for tb in self.actual_database.gettables():
                 tbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
                 tbcolumn = Column()
-                tbcontainer.padding = int(self.middlecontainer.width*2/100)
                 tbrow = Row()
-                tbrow.alignment='center'
+                tbrow.width = self.middlecontainer.width
+                tbnamecontainer = Container(bgcolor=colors.WHITE,padding=2)
+                tbnamecontainer.width = tbrow.width
                 tbname = ElevatedButton(text=tb.name)
                 tbactions = Row()
+                tbactions.padding = int(self.middlecontainer.width*2/100)
                 tbactions.alignment='center'
                 rename_database_button = ElevatedButton(text='rename')
                 drop_database_button = ElevatedButton(text='drop')
                 list_fields_button = ElevatedButton(text='fields')
                 drop_database_button.bgcolor = colors.RED_200
                 tbactions.controls = [rename_database_button,drop_database_button,list_fields_button] 
-                tbrow.controls = [tbname]
+                tbnamecontainer.content=tbname
+                tbrow.controls = [tbnamecontainer]
                 tbcolumn.controls.append(tbrow)
                 tbcolumn.controls.append(tbactions)
                 tbcontainer.content = tbcolumn
@@ -90,7 +93,7 @@ class SQLGUY:
         self.Servers  =   ServersView(self)
         self.page.clean()
         self.viewcontainer.content = self.viewcolumn
-        self.viewlabel.controls = [self.viewlabeltext]
+        self.viewlabel.content = self.viewlabeltext
         self.viewcolumn.controls = [self.viewlabel,self.view]
         self.container.width = self.wwidth()
         self.container.height = self.wheight()
@@ -105,8 +108,10 @@ class SQLGUY:
         self.viewcontainer.height = self.middlecontainer.height
         self.view.width = int(self.wwidth()*(70/100))
         self.viewlabel.width = self.middlecontainer.width
-        self.viewlabel.bgcolor = colors.WHITE
         self.viewlabel.height = int(self.viewcontainer.height*5/100)
+        self.viewlabeltext.width = self.middlecontainer.width
+        self.viewlabeltext.height = int(self.viewcontainer.height*5/100)
+        self.viewlabel.bgcolor = colors.WHITE
         self.view.height = int(self.viewcontainer.height*95/100)
         self.serverscolumn.width = int(self.wwidth()*(30/100))
    
