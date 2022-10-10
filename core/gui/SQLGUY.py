@@ -27,7 +27,7 @@ class SQLGUY:
 
     def list_database(self):
         if self.actual_server and self.actual_database:
-            self.viewlabel.value = f"{tables in {self.actual_server}{self.actual_database}"}
+            self.viewlabel.value = f"tables in {self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.view.controls = []
             for tb in self.actual_database.gettables():
@@ -102,8 +102,8 @@ class SQLGUY:
         self.serverscontainer.width = int(self.wwidth()*(30/100))
         self.viewcontainer.height = self.middlecontainer.height
         self.view.width = int(self.wwidth()*(70/100))
-        self.viewlabel.height = int(self.viewcontainer.height*10/100)
-        self.view.height = int(self.viewcontainer.height*90/100)
+        self.viewlabel.height = int(self.viewcontainer.height*5/100)
+        self.view.height = int(self.viewcontainer.height*95/100)
         self.serverscolumn.width = int(self.wwidth()*(30/100))
    
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
