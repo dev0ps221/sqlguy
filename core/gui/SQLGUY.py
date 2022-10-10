@@ -9,7 +9,8 @@ print(alignment.__dir__())
 
 class SQLGUY:
 
-
+    Servers = None
+    ServerActions = None
     connected_servers = []
     is_logged = None
     actual_server = None
@@ -30,34 +31,13 @@ class SQLGUY:
         if self.actual_server and self.actual_database:
             self.viewlabeltext.value = f"tables in {self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
-            self.view.controls = []
-            for tb in self.actual_database.gettables():
-                tbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
-                tbcolumn = Column()
-                tbrow = Row()
-                tbrow.width = self.middlecontainer.width
-                tbnamecontainer = Container(bgcolor=colors.WHITE,padding=2)
-                tbnamecontainer.width = tbrow.width
-                tbname = ElevatedButton(text=tb.name)
-                tbactions = Row()
-                tbactions.padding = int(self.middlecontainer.width*2/100)
-                tbactions.alignment='center'
-                rename_database_button = ElevatedButton(text='rename')
-                drop_database_button = ElevatedButton(text='drop')
-                list_fields_button = ElevatedButton(text='fields')
-                drop_database_button.bgcolor = colors.RED_200
-                tbactions.controls = [rename_database_button,drop_database_button,list_fields_button] 
-                tbnamecontainer.content=tbname
-                tbrow.controls = [tbnamecontainer]
-                tbcolumn.controls.append(tbrow)
-                tbcolumn.controls.append(tbactions)
-                tbcontainer.content = tbcolumn
-                self.view.controls.append(tbcontainer)
-                
+            self.view.controls = self.actual_database.tablelistView()
             self.view.update()
 
     def create_database(self):
         if self.actual_server:
+            self.viewlabeltext.value = f"create a new table in {self.actual_server}{self.actual_database}"
+            self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []
             self.view.update()
@@ -89,8 +69,9 @@ class SQLGUY:
         
 
     def build_components(self):
-        self.ServerActions   =   ServerActionsView(self)
-        self.Servers  =   ServersView(self)
+        if self.ServerActions is None and self.Servers is None:
+            self.ServerActions   =   ServerActionsView(self)    
+            self.Servers  =   ServersView(self)
         self.page.clean()
         self.viewcontainer.content = self.viewcolumn
         self.viewlabel.content = self.viewlabeltext
@@ -129,6 +110,13 @@ class SQLGUY:
     def refresh(self):
         self.page.update()
 
+    def on_resize(self,event):
+        self.serverscolumn.clean()
+        self.build_components()
+        self.topbarcontainer.update()
+        self.serverscontainer.update()
+        self.refresh_view()
+
     def wwidth(self):
         return int(self.page.window_width)
 
@@ -137,6 +125,7 @@ class SQLGUY:
 
     def loop(self,page:Page):
         self.page = page
+        self.page.on_resize = self.on_resize
         self.page.bgcolor = colors.BLUE_GREY_100
         self.page.padding = 0
         self.build_components()
