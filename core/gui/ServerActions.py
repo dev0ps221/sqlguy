@@ -37,7 +37,8 @@ class ServerActionsView:
     def select_database(self,name):
         for database in self.getdatabases():
             if database.name == name:
-                self.selected_database = database
+                self.master.actual_database = database
+                self.selected_database = self.master.actual_database
         self.update()
 
     def select_view(self,view):
@@ -65,7 +66,10 @@ class ServerActionsView:
             self.updatedatabaselist()
             self.databaseselect.options = []
             for database in self.databaselist:
-                self.databaseselect.options.append(dropdown.Option(database))
+                option = dropdown.Option(database)
+                if self.selected_database and self.selected_database == database:
+                    option.selected = True
+                self.databaseselect.options.append(option)
             self.serveractions.controls = []
             self.serveractions.controls.append(self.databaseselect)
             self.serveractions.controls.append(self.listdatabasebutton)
@@ -74,9 +78,9 @@ class ServerActionsView:
             if self.selected_view:
                 if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
-                    if self.select_database == None:
+                    if self.selected_database == None:
                         if len(self.databaselist):
-                            self.select_database(self.databaselist[0])
+                            self.select_database(self.databaselist[0].name)
                     else:
                         self.trigger_list_database()
                 else:

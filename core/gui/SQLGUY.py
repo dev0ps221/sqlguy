@@ -13,6 +13,7 @@ class SQLGUY:
     connected_servers = []
     is_logged = None
     actual_server = None
+    actual_database = None
     actual_view = 'login'
     topbarcontainer = Row()
     middlecontainer = Row()
@@ -23,8 +24,8 @@ class SQLGUY:
     container = Column()
 
     def list_database(self):
-        if self.actual_server:
-            self.ServerActions.serveractions_container_label.value = self.actual_server
+        if self.actual_server and self.actual_database:
+            self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.view.controls = []
             for db in self.actual_server.getdatabases():
                 dbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
@@ -47,7 +48,6 @@ class SQLGUY:
                 self.view.controls.append(dbcontainer)
                 
             self.view.update()
-            print('lets show the databases...')
 
     def create_database(self):
         if self.actual_server:
