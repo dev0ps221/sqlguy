@@ -67,7 +67,7 @@ class ServerActionsView:
             self.databaseselect.options = []
             for database in self.databaselist:
                 option = dropdown.Option(database) 
-                if self.selected_database is not None and self.selected_database=database:
+                if self.selected_database is not None and self.selected_database==database:
                     self.databaseselect.value = database
                 self.databaseselect.options.append(option)
             self.serveractions.controls = []
