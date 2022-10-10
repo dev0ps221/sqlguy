@@ -17,7 +17,9 @@ class SQLGUY:
     actual_view = 'login'
     topbarcontainer = Row()
     middlecontainer = Row()
-    viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=20)
+    viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=5)
+    viewcolumn = Column()
+    viewlabel = Text()
     view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.BLUE_GREY_200)
     serverscolumn = Column()
@@ -25,27 +27,28 @@ class SQLGUY:
 
     def list_database(self):
         if self.actual_server and self.actual_database:
+            self.viewlabel.value = f"{tables in {self.actual_server}{self.actual_database}"}
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.view.controls = []
-            for db in self.actual_server.getdatabases():
-                dbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
-                dbcolumn = Column()
-                dbcontainer.padding = int(self.middlecontainer.width*2/100)
-                dbrow = Row()
-                dbrow.alignment='center'
-                dbname = ElevatedButton(text=db.name)
-                dbactions = Row()
-                dbactions.alignment='center'
+            for tb in self.actual_database.gettables():
+                tbcontainer = Container(bgcolor=colors.BLUE_GREY_500)
+                tbcolumn = Column()
+                tbcontainer.padding = int(self.middlecontainer.width*2/100)
+                tbrow = Row()
+                tbrow.alignment='center'
+                tbname = ElevatedButton(text=tb.name)
+                tbactions = Row()
+                tbactions.alignment='center'
                 rename_database_button = ElevatedButton(text='rename')
                 drop_database_button = ElevatedButton(text='drop')
-                list_tables_button = ElevatedButton(text='tables')
+                list_fields_button = ElevatedButton(text='fields')
                 drop_database_button.bgcolor = colors.RED_200
-                dbactions.controls = [rename_database_button,drop_database_button,list_tables_button] 
-                dbrow.controls = [dbname]
-                dbcolumn.controls.append(dbrow)
-                dbcolumn.controls.append(dbactions)
-                dbcontainer.content = dbcolumn
-                self.view.controls.append(dbcontainer)
+                tbactions.controls = [rename_database_button,drop_database_button,list_fields_button] 
+                tbrow.controls = [tbname]
+                tbcolumn.controls.append(tbrow)
+                tbcolumn.controls.append(tbactions)
+                tbcontainer.content = tbcolumn
+                self.view.controls.append(tbcontainer)
                 
             self.view.update()
 
@@ -85,7 +88,8 @@ class SQLGUY:
         self.ServerActions   =   ServerActionsView(self)
         self.Servers  =   ServersView(self)
         self.page.clean()
-        self.viewcontainer.content = self.view
+        self.viewcontainer.content = self.viewcolumn
+        self.viewcolumn.controls = [self.viewlabel,self.view]
         self.container.width = self.wwidth()
         self.container.height = self.wheight()
         
@@ -96,7 +100,10 @@ class SQLGUY:
    
         self.viewcontainer.width = int(self.wwidth()*(70/100))
         self.serverscontainer.width = int(self.wwidth()*(30/100))
+        self.viewcontainer.height = self.middlecontainer.height
         self.view.width = int(self.wwidth()*(70/100))
+        self.viewlabel.height = int(self.viewcontainer.height*10/100)
+        self.view.height = int(self.viewcontainer.height*90/100)
         self.serverscolumn.width = int(self.wwidth()*(30/100))
    
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
