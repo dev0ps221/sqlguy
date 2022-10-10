@@ -19,7 +19,8 @@ class SQLGUY:
     middlecontainer = Row()
     viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=5)
     viewcolumn = Column()
-    viewlabel = Text()
+    viewlabel = Container(expand=True,bgcolor=colors.WHITE)
+    viewlabeltext = Text()
     view = Column(scroll='adaptive')
     serverscontainer = Container(bgcolor=colors.BLUE_GREY_200)
     serverscolumn = Column()
@@ -27,7 +28,7 @@ class SQLGUY:
 
     def list_database(self):
         if self.actual_server and self.actual_database:
-            self.viewlabel.value = f"tables in {self.actual_server}{self.actual_database}"
+            self.viewlabeltext.value = f"tables in {self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.view.controls = []
             for tb in self.actual_database.gettables():
@@ -89,6 +90,7 @@ class SQLGUY:
         self.Servers  =   ServersView(self)
         self.page.clean()
         self.viewcontainer.content = self.viewcolumn
+        self.viewlabel.controls = [self.viewlabeltext]
         self.viewcolumn.controls = [self.viewlabel,self.view]
         self.container.width = self.wwidth()
         self.container.height = self.wheight()
@@ -102,6 +104,7 @@ class SQLGUY:
         self.serverscontainer.width = int(self.wwidth()*(30/100))
         self.viewcontainer.height = self.middlecontainer.height
         self.view.width = int(self.wwidth()*(70/100))
+        self.viewlabel.width = self.middlecontainer.width
         self.viewlabel.bgcolor = colors.WHITE
         self.viewlabel.height = int(self.viewcontainer.height*5/100)
         self.view.height = int(self.viewcontainer.height*95/100)
