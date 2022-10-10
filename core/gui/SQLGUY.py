@@ -102,6 +102,7 @@ class SQLGUY:
         self.serverscontainer.width = int(self.wwidth()*(30/100))
         self.viewcontainer.height = self.middlecontainer.height
         self.view.width = int(self.wwidth()*(70/100))
+        self.viewlabel.bgcolor = colors.WHITE
         self.viewlabel.height = int(self.viewcontainer.height*5/100)
         self.view.height = int(self.viewcontainer.height*95/100)
         self.serverscolumn.width = int(self.wwidth()*(30/100))
