@@ -22,7 +22,7 @@ class SQLGUY:
     serverscolumn = Column()
     container = Column()
 
-    def list_databases(self):
+    def list_database(self):
         if self.actual_server:
             self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []

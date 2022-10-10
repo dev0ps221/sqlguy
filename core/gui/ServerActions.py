@@ -12,9 +12,9 @@ class ServerActionsView:
     serveractions_container_label=Text(value='DATABASES')
     serveractions = Row(scroll='adaptive')
     serveractions_container = Column()
-    container = Container(bgcolor=colors.BLUE_GREY_200,padding=20)
+    container = Container(bgcolor=colors.BLUE_GREY_200,padding=5)
     databaselist = []
-    databaseselect = Dropdown()
+    databaseselect = Dropdown(label='SELECT DATABASE')
     listdatabasebutton = ElevatedButton(text='list')
     listdatabasebutton.bgcolor = colors.WHITE
     createdatabasebutton = ElevatedButton(text='create')
@@ -51,8 +51,8 @@ class ServerActionsView:
     def on_select_view(self,event,view):
         self.select_view(view)
             
-    def trigger_list_databases(self):
-        self.master.list_databases()
+    def trigger_list_database(self):
+        self.master.list_database()
 
     def trigger_create_database(self):
         self.master.create_database()
@@ -74,7 +74,11 @@ class ServerActionsView:
             if self.selected_view:
                 if self.selected_view == self.listdatabasebutton.text:
                     self.listdatabasebutton.bgcolor = colors.GREEN_100
-                    self.trigger_list_databases()
+                    if self.select_database == None:
+                        if len(self.databaselist):
+                            self.select_database(self.databaselist[0])
+                    else:
+                        self.trigger_list_database()
                 else:
                     self.listdatabasebutton.bgcolor = colors.WHITE
 
