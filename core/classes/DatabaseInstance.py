@@ -1,15 +1,15 @@
-from flet import Container,Row,Text,ElevatedButton,Column
+from flet import Container,Row,Text,ElevatedButton,Column,colors
 from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
 
-    def tablelistView(self):
+    def tablelistView(self,master):
         list = []
         for tb in self.gettables():
             tbcontainer = Container(bgcolor=colors.WHITE)
             tbcolumn = Column()
             tbrow = Row()
-            tbrow.width = self.view.width
+            tbrow.width = master.view.width
             tbnamecontainer = Container(padding=2)
             tbnamecontainer.width = tbrow.width
             tbname = Text(value=tb.name)
