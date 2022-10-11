@@ -15,7 +15,23 @@ class ServerInstance:
         databasenamecontainer = Container()
         databasenamecolumn = Column()
         databasename = TextField(label='the new database\'s name')
-        validatecreatedatabase = ElevatedButton
+        validatecreatedatabase = ElevatedButton(text='create')
+        databasenamecontainer.content = databasename
+        databasenamecolumn.controls = [databasenamecontainer,validatecreatedatabase]
+        createdatabasecontainer.content = databasenamecolumn
+        validatecreatedatabase.on_click = lambda event : self.process_create_database(event,databasename,validatecreatedatabase)
+        return [createdatabasecontainer] 
+
+    def create_database(self,dbname):
+        req = f"CREATE database {dbname}"
+        self.executereq(req)
+        req = f"show databases like {dbname}"
+        print(self.executereq(req)) 
+
+    def process_create_database(self,name,button):
+        if name.value:
+            print(f"let's create database {name.value}")
+            self.create_database(name)
 
     def connect(self):
         self.dbinstance = mysql.connector.connect(
