@@ -35,6 +35,7 @@ class ServerActionsView:
         self.master.page.update()
 
     def select_database(self,name):
+        self.master.actual_server.setdata()
         for database in self.getdatabases():
             if database.name == name:
                 self.master.actual_database = database

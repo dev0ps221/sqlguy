@@ -4,6 +4,10 @@ class DatabaseInstance:
     data = {}
 
 
+    def createtableView(self):
+        print(f"let's create a new table in database {self.name}")
+        return []
+        
     def tablelistView(self,master):
         list = []
         for tb in self.gettables():

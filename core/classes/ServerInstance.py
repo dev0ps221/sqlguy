@@ -15,26 +15,38 @@ class ServerInstance:
         databasenamecontainer = Container()
         databasenamecolumn = Column()
         databasename = TextField(label='the new database\'s name')
+        statustextrow = Row()
+        statustext = Text()
         validatecreatedatabase = ElevatedButton(text='create')
         databasenamecontainer.content = databasename
-        databasenamecolumn.controls = [databasenamecontainer,validatecreatedatabase]
+        statustextrow.controls = [statustext]
+        databasenamecolumn.controls = [databasenamecontainer,validatecreatedatabase,statustextrow]
         createdatabasecontainer.content = databasenamecolumn
-        validatecreatedatabase.on_click = lambda event : self.process_create_database(databasename,validatecreatedatabase)
+        validatecreatedatabase.on_click = lambda event : self.process_create_database(databasename,validatecreatedatabase,statustextrow,statustext,master)
         return [createdatabasecontainer] 
 
     def create_database(self,dbname):
         req = f"CREATE database {dbname}"
-        self.executereq(req)
+        print(self.executereq(req))
         req = f"show databases like '{dbname}'"
         doesexist = self.executereq(req)
-        (exists,error) = doesexist[0] if len(doesexist) else (False,'does not exist')
-        print(exists)
-        print(error,' is error') 
+        exists,error = None,None
+        if len(doesexist):
+            match = doesexist[0]
+            exists,error = (match[0],match[1] if len(match)>1 else None)
+        if error:
+            print("ERROR WHEN ATTEMPTING TO CREATE DATABASE")
+            print(f"\t-{error}")
+        return exists
 
-    def process_create_database(self,name,button):
+
+    def process_create_database(self,name,button,statustextrow,statustext,master):
         if name.value:
-            print(f"let's create database {name.value}")
-            self.create_database(name.value)
+            statustext.value = f'{"SUCCESS" if self.create_database(name.value) else "FAILED"} CREATING DATABASE {name.value}'
+            statustext.update()
+            statusaction = ElevatedButton(text=f'select database {name.value}',on_click=lambda event:master.ServerActions.select_database(name.value))
+            statustextrow.controls = [statustext,statusaction]
+            statustextrow.update()
 
     def connect(self):
         self.dbinstance = mysql.connector.connect(
