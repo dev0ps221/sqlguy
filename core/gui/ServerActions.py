@@ -92,7 +92,7 @@ class ServerActionsView:
                 else:
                     self.createdatabasebutton.bgcolor = colors.WHITE
         
-        self.databaseselect.on_change = lambda event: print(event.data)
+        self.databaseselect.on_change = lambda event: self.select_database(event.data.replace("#>",""))
         self.container.content = self.serveractions_container
 
         if self.master.actual_server:

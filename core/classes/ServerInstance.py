@@ -9,6 +9,9 @@ class ServerInstance:
     cursor = None
     data = {}
 
+    def createdatabaseView(self,master):
+        print("let's show the create database view")
+
     def connect(self):
         self.dbinstance = mysql.connector.connect(
             host=self.host,

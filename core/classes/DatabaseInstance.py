@@ -3,6 +3,7 @@ from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
 
+
     def tablelistView(self,master):
         list = []
         for tb in self.gettables():
