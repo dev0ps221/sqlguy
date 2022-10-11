@@ -23,9 +23,9 @@ class ServerInstance:
         return [createdatabasecontainer] 
 
     def create_database(self,dbname):
-        req = f"CREATE database '{dbname}'"
+        req = f"CREATE database {dbname}"
         self.executereq(req)
-        req = f"show databases like {dbname}"
+        req = f"show databases like '{dbname}'"
         print(self.executereq(req)) 
 
     def process_create_database(self,name,button):
