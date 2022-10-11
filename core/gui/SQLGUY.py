@@ -4,7 +4,7 @@ from flet import Page,Column,Container,Row,Text,ElevatedButton,colors,alignment
 from mysql.connector.cursor_cext import CMySQLCursor as CMySQLCursor
 
 
-print(alignment.__dir__())
+
 
 
 class SQLGUY:
@@ -15,7 +15,7 @@ class SQLGUY:
     is_logged = None
     actual_server = None
     actual_database = None
-    actual_view = 'login'
+    actual_view = None
     topbarcontainer = Row()
     middlecontainer = Row()
     viewcontainer = Container(bgcolor=colors.BLUE_GREY_100,padding=5)
@@ -41,7 +41,7 @@ class SQLGUY:
             self.ServerActions.serveractions_container_label.value = self.actual_server
             self.view.controls = []
             self.view.update()
-            print('lets create a database...')
+            
 
     def select_server(self,idx):
         self.actual_server = self.connected_servers[idx]

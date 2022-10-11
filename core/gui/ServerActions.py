@@ -91,11 +91,16 @@ class ServerActionsView:
                     self.trigger_create_database()        
                 else:
                     self.createdatabasebutton.bgcolor = colors.WHITE
+        
+        self.databaseselect.on_change = lambda event: print(event.data)
         self.container.content = self.serveractions_container
 
         if self.master.actual_server:
+            if self.master.actual_view is None: 
+                self.master.actual_view = 'list'
+                self.select_view(self.master.actual_view)
+            
             if self.selected_view is None :
-                print('hei')
                 self.select_view('list')
         
         if self.lasttarget:
