@@ -19,7 +19,7 @@ class ServerInstance:
         databasenamecontainer.content = databasename
         databasenamecolumn.controls = [databasenamecontainer,validatecreatedatabase]
         createdatabasecontainer.content = databasenamecolumn
-        validatecreatedatabase.on_click = lambda event : self.process_create_database(event,databasename,validatecreatedatabase)
+        validatecreatedatabase.on_click = lambda event : self.process_create_database(databasename,validatecreatedatabase)
         return [createdatabasecontainer] 
 
     def create_database(self,dbname):
