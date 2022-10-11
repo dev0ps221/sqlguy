@@ -1,5 +1,5 @@
 import mysql.connector
-from flet import Text,Column,Container,Row,TextField
+from flet import Text,Column,ElevatedButton,Container,Row,TextField
 from core.classes.DatabaseInstance import DatabaseInstance
 class ServerInstance:
     host = None
@@ -15,7 +15,7 @@ class ServerInstance:
         databasenamecontainer = Container()
         databasenamecolumn = Column()
         databasename = TextField(label='the new database\'s name')
-        print("let's show the create database view")
+        validatecreatedatabase = ElevatedButton
 
     def connect(self):
         self.dbinstance = mysql.connector.connect(
