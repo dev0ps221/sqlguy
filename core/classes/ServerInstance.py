@@ -26,7 +26,10 @@ class ServerInstance:
         req = f"CREATE database {dbname}"
         self.executereq(req)
         req = f"show databases like '{dbname}'"
-        print(self.executereq(req)) 
+        doesexist = self.executereq(req)
+        (exists,error) = doesexist[0] if len(doesexist) else (False,'does not exist')
+        print(exists)
+        print(error,' is error') 
 
     def process_create_database(self,name,button):
         if name.value:
