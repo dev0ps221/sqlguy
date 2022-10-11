@@ -1,4 +1,5 @@
 import mysql.connector
+from flet import Text,Column,Container,Row,TextField
 from core.classes.DatabaseInstance import DatabaseInstance
 class ServerInstance:
     host = None
@@ -10,6 +11,10 @@ class ServerInstance:
     data = {}
 
     def createdatabaseView(self,master):
+        createdatabasecontainer = Container()
+        databasenamecontainer = Container()
+        databasenamecolumn = Column()
+        databasename = TextField(label='the new database\'s name')
         print("let's show the create database view")
 
     def connect(self):
