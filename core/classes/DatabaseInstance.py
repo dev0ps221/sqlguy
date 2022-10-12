@@ -6,6 +6,36 @@ class DatabaseInstance:
 
     def createtableView(self):
         print(f"let's create a new table in database {self.name}")
+        createtablecontainer = Container()
+        createtablecolumn = Column()
+
+        fieldscontainer = Container()
+        fieldscolumn = Column()
+
+        keyscontainer = Container()
+        keyscolumn = Column()
+        keysdata = Row()
+        keyslabel = Text()
+
+
+        primarykeyscontainer = Container()
+        primarykeyscolumn = Column()
+        primarykeyslabel = Text(value='primary')
+        addprimarykeybutton = ElevatedButton()
+
+        foreignkeyscontainer = Container()
+        foreignkeyscolumn = Column()
+        foreignkeyslabel = Text(value='foreign')
+        addforeignkeybutton = ElevatedButton()
+
+        uniquekeyscontainer = Container()
+        uniquekeyscolumn = Column()
+        uniquekeyslabel = Text(value='unique')
+        adduniquekeybutton = ElevatedButton()
+        uniquekeyscontainer.content = uniquekeyscolumn
+        
+        keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+
         return []
         
     def tablelistView(self,master):
