@@ -11,7 +11,7 @@ class DatabaseInstance:
 
         fieldscontainer = Container()
         fieldscolumn = Column()
-        keyslabel = Text(value='Fields')
+        fieldslabel = Text(value='Fields')
         addfieldbutton = ElevatedButton(text='add')
         fieldscolumn.controls = [fieldslabel,addfieldbutton]
         fieldscontainer.content = fieldscolumn
