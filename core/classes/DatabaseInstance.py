@@ -11,32 +11,46 @@ class DatabaseInstance:
 
         fieldscontainer = Container()
         fieldscolumn = Column()
+        keyslabel = Text(value='Fields')
+        addfieldbutton = ElevatedButton(text='add')
+        fieldscolumn.controls = [fieldslabel,addfieldbutton]
+        fieldscontainer.content = fieldscolumn
 
         keyscontainer = Container()
         keyscolumn = Column()
         keysdata = Row()
-        keyslabel = Text()
+        keyslabel = Text(value='Keys')
 
 
         primarykeyscontainer = Container()
         primarykeyscolumn = Column()
         primarykeyslabel = Text(value='primary')
-        addprimarykeybutton = ElevatedButton()
+        addprimarykeybutton = ElevatedButton(text='add')
+        primarykeyscontainer.content = primarykeyscolumn
+        primarykeyscolumn.controls = [primarykeyslabel,addprimarykeybutton]
 
         foreignkeyscontainer = Container()
         foreignkeyscolumn = Column()
         foreignkeyslabel = Text(value='foreign')
-        addforeignkeybutton = ElevatedButton()
+        addforeignkeybutton = ElevatedButton(text='add')
+        foreignkeyscontainer.content = foreignkeyscolumn
+        foreignkeyscolumn.controls = [foreignkeyslabel,addforeignkeybutton]
 
         uniquekeyscontainer = Container()
         uniquekeyscolumn = Column()
         uniquekeyslabel = Text(value='unique')
-        adduniquekeybutton = ElevatedButton()
+        adduniquekeybutton = ElevatedButton(text='add')
         uniquekeyscontainer.content = uniquekeyscolumn
-        
-        keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+        uniquekeyscolumn.controls = [uniquekeyslabel,adduniquekeybutton]
 
-        return []
+        keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+        keyscolumn.controls = [keyslabel,keysdata]
+        keyscontainer.content = keyscolumn
+
+        createtablecolumn.controls = [fieldscontainer,keyscontainer]
+        createtablecontainer.content = createtablecolumn
+
+        return createtablecontainer
         
     def tablelistView(self,master):
         list = []
