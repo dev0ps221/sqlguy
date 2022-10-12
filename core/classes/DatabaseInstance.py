@@ -11,35 +11,65 @@ class DatabaseInstance:
 
         fieldscontainer = Container()
         fieldscolumn = Column()
+        fieldslist = Column()
         fieldslabel = Text(value='Fields')
         addfieldbutton = ElevatedButton(text='add')
-        fieldscolumn.controls = [fieldslabel,addfieldbutton]
-        fieldscontainer.content = fieldscolumn
 
         keyscontainer = Container()
         keyscolumn = Column()
         keysdata = Row()
         keyslabel = Text(value='Keys')
 
-
         primarykeyscontainer = Container()
         primarykeyscolumn = Column()
+        primarykeyslist = Column()
         primarykeyslabel = Text(value='primary')
         addprimarykeybutton = ElevatedButton(text='add')
-        primarykeyscontainer.content = primarykeyscolumn
-        primarykeyscolumn.controls = [primarykeyslabel,addprimarykeybutton]
 
         foreignkeyscontainer = Container()
         foreignkeyscolumn = Column()
         foreignkeyslabel = Text(value='foreign')
+        foreignkeyslist = Column()
         addforeignkeybutton = ElevatedButton(text='add')
-        foreignkeyscontainer.content = foreignkeyscolumn
-        foreignkeyscolumn.controls = [foreignkeyslabel,addforeignkeybutton]
-
+        
         uniquekeyscontainer = Container()
         uniquekeyscolumn = Column()
         uniquekeyslabel = Text(value='unique')
         adduniquekeybutton = ElevatedButton(text='add')
+
+        def addfield(event):
+            fieldcontainer = Container()
+            fieldselect = Dropdown(label='select a field')
+            fieldcontainer.content = fieldselect
+            fieldslist.controls = [fieldcontainer]
+
+        def addprimarykeyfield(event):
+            primarykeycontainer = Container()
+            primarykeyselect = Dropdown(label='select a field')
+            primarykeycontainer.content = primarykeyselect
+            primarykeyslist.controls = [primarykeycontainer]
+
+        def adduniquekeyfield(event):
+            uniquekeycontainer = Container()
+            uniquekeyselect = Dropdown(label='select a field')
+            uniquekeycontainer.content = uniquekeyselect
+            uniquekeyslist.controls = [uniquekeycontainer]
+
+        def addforeignkeyfield(event):
+            foreignkeycontainer = Container()
+            foreignkeyselect = Dropdown(label='select a field')
+            foreignkeycontainer.content = foreignkeyselect
+            foreignkeyslist.controls = [foreignkeycontainer]
+
+        fieldscolumn.controls = [fieldslabel,fieldslist,addfieldbutton]
+        fieldscontainer.content = fieldscolumn
+        
+        primarykeyscontainer.content = primarykeyscolumn
+        primarykeyscolumn.controls = [primarykeyslabel,primarykeyslist,addprimarykeybutton]
+
+        foreignkeyscontainer.content = foreignkeyscolumn
+        foreignkeyscolumn.controls = [foreignkeyslabel,foreignkeyslist,addforeignkeybutton]
+
         uniquekeyscontainer.content = uniquekeyscolumn
         uniquekeyscolumn.controls = [uniquekeyslabel,adduniquekeybutton]
 
@@ -50,7 +80,7 @@ class DatabaseInstance:
         createtablecolumn.controls = [fieldscontainer,keyscontainer]
         createtablecontainer.content = createtablecolumn
 
-        return createtablecontainer
+        return [createtablecontainer]
         
     def tablelistView(self,master):
         list = []
