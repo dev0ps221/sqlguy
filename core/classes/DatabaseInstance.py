@@ -4,18 +4,19 @@ class DatabaseInstance:
     data = {}
 
 
-    def createtableView(self):
-        print(f"let's create a new table in database {self.name}")
+    def createtableView(self,master):
         createtablecontainer = Container()
         createtablecolumn = Column()
 
         fieldscontainer = Container()
+        fieldscontainer.width = master.view.width
         fieldscolumn = Column()
         fieldslist = Column()
         fieldslabel = Text(value='Fields')
         addfieldbutton = ElevatedButton(text='add')
 
         keyscontainer = Container()
+        keyscontainer.width = master.view.width
         keyscolumn = Column()
         keysdata = Row()
         keyslabel = Text(value='Keys')

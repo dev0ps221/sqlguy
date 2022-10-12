@@ -39,7 +39,7 @@ class SQLGUY:
             self.viewlabeltext.value = f"create a new table in {self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = f"{self.actual_server}{self.actual_database}"
             self.ServerActions.serveractions_container_label.value = self.actual_server
-            self.view.controls = self.actual_database.createtableView()
+            self.view.controls = self.actual_database.createtableView(self)
             self.view.update()
             
 
