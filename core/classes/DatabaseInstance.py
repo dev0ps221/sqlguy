@@ -47,25 +47,30 @@ class DatabaseInstance:
             fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions]
             fieldcontainer.content = fieldrow
             fieldslist.controls = [fieldcontainer]
+            fieldslist.update()
 
         def addprimarykeyfield(event):
             primarykeycontainer = Container()
             primarykeyselect = Dropdown(label='select a field')
             primarykeycontainer.content = primarykeyselect
             primarykeyslist.controls = [primarykeycontainer]
-
+            primarykeyslist.update()
+        
         def adduniquekeyfield(event):
             uniquekeycontainer = Container()
             uniquekeyselect = Dropdown(label='select a field')
             uniquekeycontainer.content = uniquekeyselect
             uniquekeyslist.controls = [uniquekeycontainer]
+            uniquekeyslist.update()
 
         def addforeignkeyfield(event):
             foreignkeycontainer = Container()
             foreignkeyselect = Dropdown(label='select a field')
             foreignkeycontainer.content = foreignkeyselect
             foreignkeyslist.controls = [foreignkeycontainer]
+            foreignkeyslist.update()
 
+            
         addfieldbutton.on_click = addfield
         addprimarykeybutton.on_click = addprimarykeyfield
         addforeignkeybutton.on_click = addforeignkeyfield
