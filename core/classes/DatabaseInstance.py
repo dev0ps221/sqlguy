@@ -1,4 +1,4 @@
-from flet import Container,Row,Text,ElevatedButton,Column,colors,TextField
+from flet import Container,Row,Text,ElevatedButton,Column,colors,TextField,Dropdown,dropdown
 from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
@@ -70,7 +70,7 @@ class DatabaseInstance:
             foreignkeyslist.controls = [foreignkeycontainer]
             foreignkeyslist.update()
 
-            
+
         addfieldbutton.on_click = addfield
         addprimarykeybutton.on_click = addprimarykeyfield
         addforeignkeybutton.on_click = addforeignkeyfield
