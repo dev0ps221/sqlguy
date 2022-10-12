@@ -47,13 +47,18 @@ class DatabaseInstance:
             fieldoptions = TextField(label='options')
             fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions]
             fieldcontainer.content = fieldrow
-            fieldslist.controls = [fieldcontainer]
+            fieldslist.width = master.view.width
+            fieldrow.width = master.view.width
+            for control in fieldrow.controls:
+                control.width = int((fieldrow.width)/len(fieldrow.controls))-10
+            fieldslist.controls.append(fieldcontainer)
             fieldslist.update()
 
         def addprimarykeyfield(event):
             primarykeycontainer = Container()
             primarykeyselect = Dropdown(label='select a field')
             primarykeycontainer.content = primarykeyselect
+            primarykeyslist.width = master.view.width
             primarykeyslist.controls = [primarykeycontainer]
             primarykeyslist.update()
         
@@ -61,6 +66,7 @@ class DatabaseInstance:
             uniquekeycontainer = Container()
             uniquekeyselect = Dropdown(label='select a field')
             uniquekeycontainer.content = uniquekeyselect
+            uniquekeyslist.width = master.view.width
             uniquekeyslist.controls = [uniquekeycontainer]
             uniquekeyslist.update()
 
@@ -68,6 +74,7 @@ class DatabaseInstance:
             foreignkeycontainer = Container()
             foreignkeyselect = Dropdown(label='select a field')
             foreignkeycontainer.content = foreignkeyselect
+            foreignkeyslist.width = master.view.width
             foreignkeyslist.controls = [foreignkeycontainer]
             foreignkeyslist.update()
 
