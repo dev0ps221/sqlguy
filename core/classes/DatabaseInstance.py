@@ -1,4 +1,4 @@
-from flet import Container,Row,Text,ElevatedButton,Column,colors
+from flet import Container,Row,Text,ElevatedButton,Column,colors,TextField
 from core.classes.TableInstance import TableInstance
 class DatabaseInstance:
     data = {}
@@ -39,8 +39,13 @@ class DatabaseInstance:
 
         def addfield(event):
             fieldcontainer = Container()
-            fieldselect = Dropdown(label='select a field')
-            fieldcontainer.content = fieldselect
+            fieldrow = Row()
+            fieldname = TextField(label='name')
+            fieldtype = Dropdown(label='type')
+            fieldnull = Dropdown(label='null')
+            fieldoptions = TextField(label='options')
+            fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions]
+            fieldcontainer.content = fieldrow
             fieldslist.controls = [fieldcontainer]
 
         def addprimarykeyfield(event):
@@ -60,6 +65,11 @@ class DatabaseInstance:
             foreignkeyselect = Dropdown(label='select a field')
             foreignkeycontainer.content = foreignkeyselect
             foreignkeyslist.controls = [foreignkeycontainer]
+
+        addfieldbutton.on_click = addfield
+        addprimarykeybutton.on_click = addprimarykeyfield
+        addforeignkeybutton.on_click = addforeignkeyfield
+        adduniquekeybutton.on_click = adduniquekeyfield
 
         fieldscolumn.controls = [fieldslabel,fieldslist,addfieldbutton]
         fieldscontainer.content = fieldscolumn
