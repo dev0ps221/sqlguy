@@ -40,18 +40,28 @@ class DatabaseInstance:
 
         def addfield(event):
             fieldcontainer = Container()
+            fieldslist.controls.append(fieldcontainer)
+            containeridx = len(fieldslist.controls)-1
             fieldrow = Row()
             fieldname = TextField(label='name')
             fieldtype = Dropdown(label='type')
             fieldnull = Dropdown(label='null')
             fieldoptions = TextField(label='options')
-            fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions]
+            fieldremove = ElevatedButton(text='remove',bgcolor=colors.RED_400)
+            fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions,fieldremove]
             fieldcontainer.content = fieldrow
             fieldslist.width = master.view.width
             fieldrow.width = master.view.width
             for control in fieldrow.controls:
                 control.width = int((fieldrow.width)/len(fieldrow.controls))-10
-            fieldslist.controls.append(fieldcontainer)
+            def delfield(x):
+                controls = []
+                for idx,control in enumerate(fieldslist.controls):
+                    if containeridx != idx: controls.append(control)
+                fieldslist.controls = controls  
+                fieldslist.update()
+
+            fieldremove.on_click = lambda x:delfield(x)
             fieldslist.update()
 
         def addprimarykeyfield(event):
