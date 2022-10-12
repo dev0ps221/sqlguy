@@ -12,7 +12,7 @@ class ServerActionsView:
     serveractions_container_label=Text(value='DATABASES')
     serveractions = Row(scroll='adaptive')
     serveractions_container = Column()
-    container = Container(bgcolor=colors.BLUE_GREY_200,padding=5)
+    container = Container(bgcolor=colors.ORANGE_200,padding=5)
     databaselist = []
     databaseselect = Dropdown(label='SELECT DATABASE')
     listdatabasebutton = ElevatedButton(text='list')

@@ -23,7 +23,7 @@ class SQLGUY:
     viewlabel = Container(bgcolor=colors.WHITE)
     viewlabeltext = Text()
     view = Column(scroll='adaptive')
-    serverscontainer = Container(bgcolor=colors.BLUE_GREY_200)
+    serverscontainer = Container(bgcolor=colors.ORANGE_200)
     serverscolumn = Column()
     container = Column()
 
