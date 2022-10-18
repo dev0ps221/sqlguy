@@ -5,6 +5,8 @@ class DatabaseInstance:
 
 
     def createtableView(self,master):
+        global removefieldbuttons 
+        removefieldbuttons = []
         createtablecontainer = Container()
         createtablecolumn = Column()
 
@@ -22,23 +24,30 @@ class DatabaseInstance:
         keyslabel = Text(value='Keys')
 
         primarykeyscontainer = Container()
+        primarykeyscontainer.width = int(master.view.width/3)-10
         primarykeyscolumn = Column()
         primarykeyslist = Column()
         primarykeyslabel = Text(value='primary')
         addprimarykeybutton = ElevatedButton(text='add')
 
         foreignkeyscontainer = Container()
+        foreignkeyscontainer.width = int(master.view.width/3)-10
         foreignkeyscolumn = Column()
         foreignkeyslabel = Text(value='foreign')
         foreignkeyslist = Column()
         addforeignkeybutton = ElevatedButton(text='add')
         
         uniquekeyscontainer = Container()
+        uniquekeyscontainer.width = int(master.view.width/3)-10
         uniquekeyscolumn = Column()
         uniquekeyslabel = Text(value='unique')
         uniquekeyslist = Column()
         adduniquekeybutton = ElevatedButton(text='add')
 
+        def create_table_data():
+            True
+        def create_table_keys():
+            True
         def addfield(event):
             fieldcontainer = Container()
             fieldslist.controls.append(fieldcontainer)
@@ -49,20 +58,31 @@ class DatabaseInstance:
             fieldnull = Dropdown(label='null')
             fieldoptions = TextField(label='options')
             fieldremove = ElevatedButton(text='remove',bgcolor=colors.RED_400)
+            removefieldbuttons.append(fieldremove)
             fieldrow.controls = [fieldname,fieldtype,fieldnull,fieldoptions,fieldremove]
             fieldcontainer.content = fieldrow
             fieldslist.width = master.view.width
             fieldrow.width = master.view.width
+            
             for control in fieldrow.controls:
                 control.width = int((fieldrow.width)/len(fieldrow.controls))-10
-            def delfield(x):
+
+            def delfield(x,containeridx):
+                global removefieldbuttons
                 controls = []
                 for idx,control in enumerate(fieldslist.controls):
                     if containeridx != idx: controls.append(control)
-                fieldslist.controls = controls  
+                fieldslist.controls = controls
+                buttons = []  
+                for idx,button in enumerate(removefieldbuttons):
+                    if containeridx != idx: buttons.append(button)
+                removefieldbuttons = buttons
+                for idx,button in enumerate(removefieldbuttons):
+                    button.on_click = lambda x:delfield(x,idx)        
+                
                 fieldslist.update()
 
-            fieldremove.on_click = lambda x:delfield(x)
+            fieldremove.on_click = lambda x:delfield(x,containeridx)
             fieldslist.update()
 
         def addprimarykeyfield(event):
@@ -114,7 +134,7 @@ class DatabaseInstance:
         foreignkeyscolumn.controls = [foreignkeyslabel,foreignkeyslist,addforeignkeybutton]
 
         uniquekeyscontainer.content = uniquekeyscolumn
-        uniquekeyscolumn.controls = [uniquekeyslabel,adduniquekeybutton]
+        uniquekeyscolumn.controls = [uniquekeyslabel,uniquekeyslist,adduniquekeybutton]
 
         keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
         keyscolumn.controls = [keyslabel,keysdata]

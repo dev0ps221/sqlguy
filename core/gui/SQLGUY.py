@@ -93,7 +93,7 @@ class SQLGUY:
         self.viewlabeltext.width = self.middlecontainer.width
         self.viewlabeltext.height = int(self.viewcontainer.height*5/100)
         self.viewlabel.bgcolor = colors.WHITE
-        self.view.height = int(self.viewcontainer.height*95/100)
+        self.view.height = int(self.viewcontainer.height*90/100)
         self.serverscolumn.width = int(self.wwidth()*(30/100))
    
         self.middlecontainer.controls = [self.viewcontainer,self.serverscontainer]
