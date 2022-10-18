@@ -36,6 +36,7 @@ class DatabaseInstance:
         uniquekeyscontainer = Container()
         uniquekeyscolumn = Column()
         uniquekeyslabel = Text(value='unique')
+        uniquekeyslist = Column()
         adduniquekeybutton = ElevatedButton(text='add')
 
         def addfield(event):
@@ -67,26 +68,35 @@ class DatabaseInstance:
         def addprimarykeyfield(event):
             primarykeycontainer = Container()
             primarykeyselect = Dropdown(label='select a field')
+            primarykeyselect.width = int(master.view.width/3)
             primarykeycontainer.content = primarykeyselect
-            primarykeyslist.width = master.view.width
+            primarykeyslist.width = int(master.view.width/3)
             primarykeyslist.controls = [primarykeycontainer]
             primarykeyslist.update()
-        
+            keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+            
+
         def adduniquekeyfield(event):
             uniquekeycontainer = Container()
             uniquekeyselect = Dropdown(label='select a field')
+            uniquekeyselect.width = int(master.view.width/3)
             uniquekeycontainer.content = uniquekeyselect
-            uniquekeyslist.width = master.view.width
+            uniquekeyslist.width = int(master.view.width/3)
             uniquekeyslist.controls = [uniquekeycontainer]
             uniquekeyslist.update()
+            keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+            
 
         def addforeignkeyfield(event):
             foreignkeycontainer = Container()
             foreignkeyselect = Dropdown(label='select a field')
+            foreignkeyselect.width = int(master.view.width/3)
             foreignkeycontainer.content = foreignkeyselect
-            foreignkeyslist.width = master.view.width
+            foreignkeyslist.width = int(master.view.width/3)
             foreignkeyslist.controls = [foreignkeycontainer]
             foreignkeyslist.update()
+            keysdata.controls = [primarykeyscontainer,uniquekeyscontainer,foreignkeyscontainer]
+            
 
 
         addfieldbutton.on_click = addfield
